@@ -5,11 +5,13 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
-  get '/dashboard' => 'users#dashboard'
+  get '/dashboard' => 'users#dashboard',  as: 'dashboard'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+
+  get '/opportunities' => 'opportunities#index', as: 'opportunities'
 
 
 end
