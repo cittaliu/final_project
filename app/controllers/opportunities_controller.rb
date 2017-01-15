@@ -24,16 +24,23 @@ class OpportunitiesController < ApplicationController
 
   def show
     @opportunity = Opportunity.find_by_id(params[:id])
+    @first_name = @opportunity
+    @last_name = @opportunity.opening.company.contacts.last.name
 
     find_email
 
-    p @email
   end
 
   def find_email
     p 'find email is clicked'
+    @opportunity = Opportunity.find_by_id(params[:id])
+    @first_name = @opportunity.opening.company.contacts.last.name
+    @last_name = @opportunity.opening.company.contacts.last.name
+    @domain = @opportunity.opening.company.website
+    params = 'https://api.hunter.io/v2/email-finder?domain='+@domain+'&first_name='+@first_name+'&last_name='+@last_name+'&api_key='
+    # p params
     response = self.class.get(
-      'https://api.hunter.io/v2/email-finder?domain=groobusiness.com&first_name=Sophie&last_name=Luo&api_key='
+      params
     )
     data = response.parsed_response["data"]
     @email = data['email']
@@ -45,5 +52,6 @@ class OpportunitiesController < ApplicationController
   def company_params
     params.require(:company).permit(:name, :website, :description)
   end
+
 
 end
