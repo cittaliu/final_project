@@ -3,3 +3,15 @@
 <%= render partial: '/partials/side' %>
 <h1> I'm opportunities/show </h1>
 <h2> i'm showing <%=@opportunity.opening.company.name %> </h2>
+<p>you have <%=@opportunity.opening.company.contacts.count %> contacts in this company</p>
+  <% @opportunity.opening.company.contacts.each do |contact| %>
+  First Name:<%= contact.name %>
+  <br>
+  Last Name: <%= contact.name %>
+  <br>
+  Company Domain: <%= @opportunity.opening.company.website %>
+  <br>
+  Email: <%= button_to "Get Email", action: "find_email" %>
+  <%end %>
+
+  <h3>We found the following email: <%= @email %></h3>

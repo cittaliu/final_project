@@ -38,6 +38,17 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'jquery-ui-rails'
 
+# Use httparty for external apis
+gem 'httparty'
+
+# Use google api for google oauth
+gem 'google-api-client', '~> 0.9'
+
+gem "omniauth-google-oauth2", "~> 0.2.1"
+
+# A wrapper for hunter api
+gem 'emailhunter'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

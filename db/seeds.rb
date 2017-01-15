@@ -18,3 +18,5 @@ Company.create([{
 }
 
 ]);
+
+User.destroy_all
