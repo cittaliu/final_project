@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20170115004606) do
   create_table "opportunities", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "opening_id"
+    t.string   "status"
+    t.float    "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["opening_id"], name: "index_opportunities_on_opening_id", using: :btree

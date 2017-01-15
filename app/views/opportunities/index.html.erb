@@ -11,13 +11,32 @@
 
     <!-- content -->
     <div class="wrapper-md">
-      <!-- <% @opportunities.each do |opportunity| %>
-      <h1><%=opportunity.opening.company.name%></h1>
-        <%end%> -->
-
     <div class="panel panel-default">
+<table id="opportunities">
+  <thead>
+  <tr>
+    <th  style="width:20%">Opportunity</th>
+    <th  style="width:25%">Status</th>
+    <th  style="width:25%">Priority</th>
+    <th  style="width:15%">Website</th>
+    <th  style="width:15%">Inactive Days</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @opportunities.each do |opportunity| %>
+    <tr>
+      <td><%=link_to opportunity.opening.company.name, company_path(id: opportunity.opening.company.id)%></td>
+      <td><%=opportunity.status%></td>
+      <td><%=opportunity.priority%></td>
+      <td><%=link_to opportunity.opening.company.website, "https://www."+opportunity.opening.company.website, :target => "_blank" %></td>
+      <td>12</td>
+    </tr>
+    <%end%>
+    </tbody>
+  </table>
 
-      <div class="table-responsive">
+
+      <!-- <div class="table-responsive">
         <table ui-jq="dataTable" ui-options="{
             sAjaxSource: 'api/datatable.json',
             aoColumns: [
@@ -38,10 +57,10 @@
             </tr>
           </thead>
           <tbody>
-            
+
           </tbody>
         </table>
-      </div>
+      </div> -->
     </div>
   </div>
 

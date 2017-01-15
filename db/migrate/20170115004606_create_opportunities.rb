@@ -4,6 +4,8 @@ class CreateOpportunities < ActiveRecord::Migration[5.0]
       t.belongs_to :user
       t.belongs_to :opening
 
+      t.string :status
+      t.float :priority
       t.timestamps
     end
   end

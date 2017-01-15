@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Company.create([{
+  name: "Google",
+  website: "google.com",
+  description: "I'm google"
+},
+{
+  name: "Apple",
+  website: "apple.com",
+  description: "I'm apple"
+}
+
+]);

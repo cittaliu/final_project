@@ -13,5 +13,7 @@ Rails.application.routes.draw do
 
   get '/opportunities' => 'opportunities#index', as: 'opportunities'
 
+  get '/companies/:id' => 'companies#show', as: 'company'
+
 
 end
