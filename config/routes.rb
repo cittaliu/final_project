@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/opportunities' => 'opportunities#index', as: 'opportunities'
+  get '/opportunities/new' => 'opportunities#new', as: 'new_opportunity'
+  post '/opportunities' => 'opportunities#create'
+  get '/opportunities/:id' => 'opportunities#show', as: 'opportunity'
 
   get '/companies/:id' => 'companies#show', as: 'company'
 
