@@ -27,26 +27,22 @@ class UsersController < ApplicationController
 
     read_calendar
 
+    # if params[:save]
+    #   new_calendar(@new_event)
+    #   p "i'm posting to your calendar"
+    # else
+    #   p "you suck"
+    # end
+
   end
 
   def read_calendar
-
-    # @options = {query: {host: 'api.cronofy.com'}, Authorization: 'Bearer xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR'}
-    #
-    # params = 'https://api.cronofy.com/v1/events?tzid=Etc/UTC'
-    # # p params
 
     @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
 
     @events = @cronofy.read_events
 
-    # response = self.class.get(
-    #   params
-    # )
-
     require 'json'
-    # data = @events.to_json
-    # # p data
 
     @events.each do |item|
       @summary = item['summary']
@@ -57,8 +53,6 @@ class UsersController < ApplicationController
       p @end_date
     end
 
-    # @summaries = data[0]['summary']
-    # p @summaries
   end
 
   private
@@ -66,5 +60,27 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
+
+    # def new_calendar(@new_event)
+    #
+    #   @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
+    #
+    #   @new_event = {
+    #     event_id: "unique-event-id",
+    #     summary: todo.title,
+    #     description: project.description,
+    #     start: Time.parse(Time.now.to_s),
+    #     end: Time.parse(project.deadline.to_s+" 8:00:00 UTC"),
+    #     location: {
+    #       description: "GA SF Classroom 3"
+    #     }
+    #   }
+    #
+    #   p @new_event
+    #
+    #   calendar_id = "cal_WHaT@PYZxTP4AAfO_lpXfHiwqNMX0uyzeKct9aQ"
+    #   @cronofy.upsert_event(calendar_id, @new_event)
+    #
+    # end
 
 end
