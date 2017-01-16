@@ -1,6 +1,12 @@
+require 'rubygems'
+require 'httparty'
+
 class UsersController < ApplicationController
 
   before_action :authorize, only: [:dashboard]
+
+  include HTTParty
+  format :json
 
   def new
   end
@@ -18,6 +24,41 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = current_user
+
+    read_calendar
+
+  end
+
+  def read_calendar
+
+    # @options = {query: {host: 'api.cronofy.com'}, Authorization: 'Bearer xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR'}
+    #
+    # params = 'https://api.cronofy.com/v1/events?tzid=Etc/UTC'
+    # # p params
+
+    @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
+
+    @events = @cronofy.read_events
+
+    # response = self.class.get(
+    #   params
+    # )
+
+    require 'json'
+    # data = @events.to_json
+    # # p data
+
+    @events.each do |item|
+      @summary = item['summary']
+      @start = item['start']
+      @end_date = item['end']
+      p @summary
+      p @start
+      p @end_date
+    end
+
+    # @summaries = data[0]['summary']
+    # p @summaries
   end
 
   private

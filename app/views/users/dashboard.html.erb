@@ -12,6 +12,23 @@
       <h3 class="font-thin m-t-xs">put your content here</h3>
     </div>
 
+    <div>
+    <%  @events.each do |item| %>
+    <div class="panel">
+      <div class="wrapper-lg">
+      <%  @summary = item['summary'] %>
+      <%  @start = item['start'].to_s[26..-2] %>
+      <%  @end_date = item['end'].to_s[26..-2] %>
+      <%= @summary %>
+      <br>
+      <%= @start %>
+      <br>
+      <%= @end_date %>
+    </div>
+  </div>
+    <%  end %>
+    </div>
+
   </div>
 </div>
 <%= render partial: '/partials/footer' %>

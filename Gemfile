@@ -49,6 +49,9 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 # A wrapper for hunter api
 gem 'emailhunter'
 
+# Use cronofy for calender integration
+gem 'cronofy'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
