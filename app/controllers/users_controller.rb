@@ -39,8 +39,9 @@ class UsersController < ApplicationController
   def read_calendar
 
     @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
-
-    @events = @cronofy.read_events
+    current_year = Time.now.strftime("%Y").to_i
+    current_month = Time.now.strftime("%m").to_i
+    @events = @cronofy.read_events(from: Date.new(current_year, current_month, 1), to: Date.new(current_year, current_month+1, 1))
 
     require 'json'
 
