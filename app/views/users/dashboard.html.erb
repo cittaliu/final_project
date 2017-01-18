@@ -2,6 +2,12 @@
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
 
+<% @auth.each do |key, value| %>
+  <h1><%= key %> </h1>
+  <p><%= value %> </p>
+<%end%>
+
+
 <div id="content" class="app-content" role="main">
   <div class="app-content-body ">
 
@@ -9,7 +15,7 @@
       <h1 class="m-n font-thin h3">I'm dashboard.html.erb</h1>
     </div>
     <div class="wrapper-md">
-      <h3 class="font-thin m-t-xs">put your content here</h3>
+      <h3 class="font-thin m-t-xs">My Events this Month</h3>
     </div>
 
     <div>
@@ -19,11 +25,14 @@
       <%  @summary = item['summary'] %>
       <%  @start = item['start'].to_s[26..-2] %>
       <%  @end_date = item['end'].to_s[26..-2] %>
+      <%  @location = item['location'].to_s[42..-3] %>
       <%= @summary %>
       <br>
       <%= @start %>
       <br>
       <%= @end_date %>
+      <br>
+      <%= @location %>
     </div>
   </div>
     <%  end %>

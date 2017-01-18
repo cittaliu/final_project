@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'httparty'
 require 'emailhunter'
+require "awesome_print"
 
 class OpportunitiesController < ApplicationController
 
@@ -37,7 +38,7 @@ class OpportunitiesController < ApplicationController
     @first_name = @opportunity.opening.company.contacts.last.name
     @last_name = @opportunity.opening.company.contacts.last.name
     @domain = @opportunity.opening.company.website
-    params = 'https://api.hunter.io/v2/email-finder?domain='+@domain+'&first_name='+@first_name+'&last_name='+@last_name+'&api_key='
+    params = 'https://api.hunter.io/v2/email-finder?domain='+@domain+'&first_name='+@first_name+'&last_name='+@last_name+''
     # p params
     response = self.class.get(
       params

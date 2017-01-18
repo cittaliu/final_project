@@ -41,10 +41,13 @@ gem 'jquery-ui-rails'
 # Use httparty for external apis
 gem 'httparty'
 
-# Use google api for google oauth
-gem 'google-api-client', '~> 0.9'
-
+# Use google omniauth for google oauth
 gem "omniauth-google-oauth2", "~> 0.2.1"
+
+# Use google api client for google apis
+gem 'google-api-client', '~> 0.7.1'
+gem 'json'
+gem 'awesome_print', :require => 'ap'
 
 # A wrapper for hunter api
 gem 'emailhunter'

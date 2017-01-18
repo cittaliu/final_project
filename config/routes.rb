@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
   get '/dashboard' => 'users#dashboard',  as: 'dashboard'
+  get '/authorization' => 'users#authorization'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -19,5 +20,6 @@ Rails.application.routes.draw do
 
   get '/companies/:id' => 'companies#show', as: 'company'
 
+  get "/auth/:provider/callback" => 'users#get_token'
 
 end
