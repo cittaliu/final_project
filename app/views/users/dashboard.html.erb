@@ -13,7 +13,7 @@
     </div>
 
     <%= button_to "Refresh My Emails", action: "email" %>
-
+    <%= button_to "Add a New Task", action: "new_event", method: :get %>
     <div>
       <% @show_messages.each do |message|%>
       <div class="panel">

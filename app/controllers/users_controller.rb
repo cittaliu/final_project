@@ -44,6 +44,15 @@ class UsersController < ApplicationController
     read_calendar
   end
 
+  def new_event
+    if params[:save]
+      new_calendar(new_project)
+      p "add task clicked"
+    else
+      p "you suck"
+    end
+  end
+
   def read_calendar
     @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
 

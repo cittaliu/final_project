@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   get '/dashboard' => 'users#dashboard',  as: 'dashboard'
   get '/dashboard' => 'users#email'
   post '/dashboard' => 'users#email'
+  get '/dashboard/new_event' => 'users#new_event', as: 'new_event'
 
 end
