@@ -30,12 +30,13 @@
       <td><%=opportunity.status%></td>
       <td><%=opportunity.priority%></td>
       <td><%=link_to opportunity.opening.company.website, "https://www."+opportunity.opening.company.website, :target => "_blank" %></td>
-      <td>12</td>
+      <td><%=(Time.now.to_i-opportunity.updated_at.to_i)/(60*60*24)%></td>
+
     </tr>
     <%end%>
     </tbody>
   </table>
-  
+
     </div>
   </div>
 

@@ -38,7 +38,7 @@ class OpportunitiesController < ApplicationController
     @first_name = @opportunity.opening.company.contacts.last.name
     @last_name = @opportunity.opening.company.contacts.last.name
     @domain = @opportunity.opening.company.website
-    params = 'https://api.hunter.io/v2/email-finder?domain='+@domain+'&first_name='+@first_name+'&last_name='+@last_name+''
+    params = 'https://api.hunter.io/v2/email-finder?domain='+@domain+'&first_name='+@first_name+'&last_name='+@last_name+'&api_key=0c75c112169e60f02b2a866c22f049492049b278'
     # p params
     response = self.class.get(
       params

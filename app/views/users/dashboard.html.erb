@@ -1,8 +1,5 @@
-
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
-
-<%= @auth.access_token %>
 
 <div id="content" class="app-content" role="main">
   <div class="app-content-body ">
@@ -11,15 +8,25 @@
       <h1 class="m-n font-thin h3">I'm dashboard.html.erb</h1>
     </div>
 
+    <div class="wrapper-md">
+      <h3 class="font-thin m-t-xs">My Emails</h3>
+    </div>
+
     <%= button_to "Refresh My Emails", action: "email" %>
+    <div>
       <% @show_messages.each do |message|%>
+      <div class="panel">
+        <div class="wrapper-lg">
         From: <%= message[:from] %><br>
         Subject: <%= message[:subject] %><br>
         Message: <%= message[:body] %><hr>
+      </div>
+    </div>
       <%end %>
+    </div>
 
     <div class="wrapper-md">
-      <h3 class="font-thin m-t-xs">My Events this Month</h3>
+      <h3 class="font-thin m-t-xs">My Tasks this Week</h3>
     </div>
 
     <div>
