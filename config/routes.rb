@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   get '/companies/:id' => 'companies#show', as: 'company'
 
   get "/auth/:provider/callback" => 'users#get_token'
+  get '/dashboard' => 'users#email'
+  post '/dashboard' => 'users#email'
 
 end

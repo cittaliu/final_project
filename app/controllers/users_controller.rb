@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'httparty'
 require "awesome_print"
+require 'google/api_client'
 
 class UsersController < ApplicationController
 
@@ -23,16 +24,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def dashboard
-    @user = current_user
-
-    read_calendar
-  end
-
   def get_token
     p 'get token clicked'
     @auth = request.env['omniauth.auth']['credentials']
     p @auth
+    p Token.last
     Token.create(
      access_token: @auth['token'],
      refresh_token: @auth['refresh_token'],
@@ -40,8 +36,14 @@ class UsersController < ApplicationController
      redirect_to '/dashboard'
   end
 
-  def read_calendar
+  def dashboard
+    @user = current_user
+    @auth = Token.last
+    read_calendar
+    email
+  end
 
+  def read_calendar
     @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
 
     current_year = Time.now.strftime("%Y").to_i
@@ -53,7 +55,53 @@ class UsersController < ApplicationController
       p @location
     end
     require 'json'
+  end
 
+  def email
+    p "I am your email. I am clicked"
+
+      client = Google::APIClient.new
+        client.authorization.access_token = Token.last.fresh_token
+        service = client.discovered_api('gmail')
+        result = client.execute(
+          :api_method => service.users.messages.list,
+          :parameters => {'userId' => 'me', 'labelIds' => 'INBOX'},
+          :headers => {'Content-Type' => 'application/json'})
+
+        def get_details(id)
+        client = Google::APIClient.new
+        client.authorization.access_token = Token.last.fresh_token
+        service = client.discovered_api('gmail')
+
+
+        result = client.execute(
+          :api_method => service.users.messages.get,
+          :parameters => {'userId' => 'me', 'id' => id},
+          :headers => {'Content-Type' => 'application/json'})
+        data = JSON.parse(result.body)
+
+        { subject: get_gmail_attribute(data, 'Subject'),
+          from: get_gmail_attribute(data, 'From'),
+          body: get_gmail_attribute_body(data, 'body')}
+        end
+
+        def get_gmail_attribute_body(gmail_data, attribute)
+          body = gmail_data['payload']['parts'][0]['body']['data']
+          decoded_body = Base64.decode64(body)
+        end
+
+        def get_gmail_attribute(gmail_data, attribute)
+          headers = gmail_data['payload']['headers']
+          array = headers.reject { |hash| hash['name'] != attribute }
+          array.first['value']
+        end
+
+        @messages = JSON.parse(result.body)['messages'] || []
+        @show_messages = []
+        @messages.each do |msg|
+          @show_messages << get_details(msg['id'])
+        end
+        ap @show_messages
   end
 
   private
