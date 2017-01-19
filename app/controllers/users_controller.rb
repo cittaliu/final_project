@@ -41,6 +41,7 @@ class UsersController < ApplicationController
     @auth = Token.last
     read_calendar
     email
+    google_calendar
   end
 
   def read_calendar
@@ -55,6 +56,33 @@ class UsersController < ApplicationController
       p @location
     end
     require 'json'
+  end
+
+  def google_calendar
+    p 'I am google calendar'
+    client = Google::APIClient.new
+    client.authorization.access_token = Token.last.fresh_token
+    service = client.discovered_api('calendar','v3')
+    # determining parameter for specific gapi!!
+    # client.discovered_apis.each do |gapi|
+    #   puts "#{gapi.title} \t #{gapi.id} \t #{gapi.preferred}"
+    # end
+    calendar_id = 'primary'
+    p Time.now
+    # response = client.execute(api_method: service.events_list.list)
+    # response = service.get_calendar_list(calendar_id,
+    #                            max_results: 10,
+    #                            single_events: true,
+    #                            order_by: 'startTime',
+    #                            time_min: Time.now.iso8601)
+    response = client.execute(api_method: service.freebusy.query,
+      body: JSON.dump({timeMin: Time.now.to_i,
+      timeMax: Time.now.to_i + 24*60*60,
+      timeZone: "EST",
+      items: [calendar_id]}),
+      headers: {'Content-Type' => 'application/json'})
+    @events = JSON.parse(response.body)
+    ap @events
   end
 
   def email
