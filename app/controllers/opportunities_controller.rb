@@ -20,7 +20,7 @@ class OpportunitiesController < ApplicationController
   end
 
   def new
-    
+
   end
 
   def show
@@ -29,7 +29,6 @@ class OpportunitiesController < ApplicationController
     @last_name = @opportunity.opening.company.contacts.last.name
 
     find_email
-
   end
 
   def find_email
@@ -39,13 +38,38 @@ class OpportunitiesController < ApplicationController
     @last_name = @opportunity.opening.company.contacts.last.name
     @domain = @opportunity.opening.company.website
     params = 'https://api.hunter.io/v2/email-finder?domain='+@domain+'&first_name='+@first_name+'&last_name='+@last_name+'&api_key=0c75c112169e60f02b2a866c22f049492049b278'
-    # p params
     response = self.class.get(
       params
     )
     data = response.parsed_response["data"]
     @email = data['email']
     @score = data['score']
+  end
+
+  def send_email
+    p 'send_email called'
+    msg = Mail.new
+    msg.date = Time.now
+    msg.subject = 'This is another email send on 9:17'
+
+    msg.body = 'Hello, world'
+    msg.to   = {
+        'sophie@groobusiness.com' => 'Sophie Luo',
+    }
+
+    client = Google::APIClient.new
+      client.authorization.access_token = Token.last.fresh_token
+      service = client.discovered_api('gmail')
+    @email = client.execute(
+    api_method: service.users.messages.to_h['gmail.users.messages.send'],
+    body_object: {
+        raw: Base64.urlsafe_encode64(msg.to_s)
+    },
+    parameters: {
+        userId: 'me',
+    }
+    )
+    ap @email
   end
 
   private

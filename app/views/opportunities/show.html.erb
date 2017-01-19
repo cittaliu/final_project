@@ -15,5 +15,5 @@
   <%end %>
 
 
-  <h3>We found the following email: <%= @email %></h3>
+  <h3>We found the following email: <%=link_to @email, :action => :send_email %></h3>
   <h3>We are <%= @score %> % confident this email exists</h3>

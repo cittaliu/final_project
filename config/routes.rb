@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post '/opportunities' => 'opportunities#create'
   get '/opportunities/:id' => 'opportunities#show', as: 'opportunity'
   post '/opportunities/:id' => 'opportunities#find_email'
+  get '/opportunities/:id/email' => 'opportunities#send_email'
 
   get '/companies/new' => 'companies#new', as: 'new_company'
   get '/companies/:id' => 'companies#show', as: 'company'
@@ -23,8 +24,6 @@ Rails.application.routes.draw do
   post '/companies' => 'companies#create'
 
   get '/dashboard' => 'users#dashboard',  as: 'dashboard'
-  get '/dashboard' => 'users#maps'
-  post '/dashboard' => 'users#maps'
   get '/dashboard' => 'users#email'
   post '/dashboard' => 'users#email'
 
