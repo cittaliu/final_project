@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
-  get '/dashboard' => 'users#dashboard',  as: 'dashboard'
-  get '/authorization' => 'users#authorization'
+  get "/auth/:provider/callback" => 'users#get_token'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -23,7 +22,9 @@ Rails.application.routes.draw do
   post '/companies/new' => 'companies#new'
   post '/companies' => 'companies#create'
 
-  get "/auth/:provider/callback" => 'users#get_token'
+  get '/dashboard' => 'users#dashboard',  as: 'dashboard'
+  get '/dashboard' => 'users#maps'
+  post '/dashboard' => 'users#maps'
   get '/dashboard' => 'users#email'
   post '/dashboard' => 'users#email'
 
