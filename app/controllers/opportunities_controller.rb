@@ -51,24 +51,28 @@ class OpportunitiesController < ApplicationController
     msg = Mail.new
     msg.date = Time.now
     msg.subject = 'This is another email send on 9:17'
-
     msg.body = 'Hello, world'
-    msg.to   = {
-        'sophie@groobusiness.com' => 'Sophie Luo',
-    }
+    msg.content_type = 'text/html'
+    msg.to = 'Sophie Luo <sophie@groobusiness.com>'
+    msg.from = 'me'
+
+    ap msg
 
     client = Google::APIClient.new
       client.authorization.access_token = Token.last.fresh_token
       service = client.discovered_api('gmail')
-    @email = client.execute(
+    result = client.execute(
     api_method: service.users.messages.to_h['gmail.users.messages.send'],
     body_object: {
         raw: Base64.urlsafe_encode64(msg.to_s)
     },
     parameters: {
         userId: 'me',
-    }
+    },
+    headers:   { 'Content-Type' => 'application/json' }
     )
+    ap result
+    @email = JSON.parse(result.body)
     ap @email
   end
 
