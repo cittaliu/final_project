@@ -57,6 +57,10 @@ gem 'emailhunter'
 # Use cronofy for calender integration
 gem 'cronofy'
 
+gem 'bootstrap-sass', '~> 3.1.1'
+gem "font-awesome-rails"
+gem 'simple-line-icons-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
