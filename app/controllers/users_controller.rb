@@ -41,21 +41,22 @@ class UsersController < ApplicationController
     @auth = Token.last
     email
     google_calendar
+    read_calendar
   end
 
-  # def read_calendar
-  #   @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
-  #
-  #   current_year = Time.now.strftime("%Y").to_i
-  #   current_month = Time.now.strftime("%m").to_i
-  #   current_day = Time.now.strftime("%d").to_i
-  #   @events = @cronofy.read_events(from: Date.new(current_year, current_month, current_day), to: Date.new(current_year, current_month, current_day+7))
-  #   @events.each do |item|
-  #     @location = item['location']
-  #     p @location
-  #   end
-  #   require 'json'
-  # end
+  def read_calendar
+    @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
+
+    current_year = Time.now.strftime("%Y").to_i
+    current_month = Time.now.strftime("%m").to_i
+    current_day = Time.now.strftime("%d").to_i
+    @events = @cronofy.read_events(from: Date.new(current_year, current_month, current_day), to: Date.new(current_year, current_month, current_day+7))
+    @events.each do |item|
+      @location = item['location']
+      p @location
+    end
+    require 'json'
+  end
 
   def google_calendar
     p 'I am google calendar'
@@ -67,20 +68,22 @@ class UsersController < ApplicationController
     # client.discovered_apis.each do |gapi|
     #   puts "#{gapi.title} \t #{gapi.id} \t #{gapi.preferred}"
     # end
-    event = {
-    timeMin: Time.now.strftime("%Y-%m-%dT%T+0000"),
-    timeMax: Time.at(Time.now.to_i + 24*60*60).strftime("%Y-%m-%dT%T+0000"),
-    timeZone: "PST"}
-
     calendarId = 'primary'
-    response = client.execute(
-      api_method: service.events.list,
-      parameters: {calendarId: 'primary'},
-      body: JSON.dump(event),
-      headers: {'Content-Type' => 'application/json'})
-      ap response.body
-    # @events = JSON.parse(response.body)
-    # ap @events
+    g_event = {
+      summary: "Do Something",
+      location: "Classroom 3",
+      start: {dateTime: Time.now.strftime("%Y-%m-%dT%T+0000")},
+      end: {dateTime: Time.at(Time.now.to_i + 24*60*60).strftime("%Y-%m-%dT%T+0000")},
+      description: "This is important",
+    }
+    response = client.execute(:api_method => service.events.insert,
+    :parameters => {'calendarId' => calendarId,
+    'sendNotifications' => true},
+    :body => JSON.dump(g_event),
+    :headers => {'Content-Type' => 'application/json'})
+
+    @new_event= JSON.parse(response.body)
+    ap @new_event
   end
 
   def email
