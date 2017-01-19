@@ -11,16 +11,9 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    new_company = Company.new(company_params)
-    p company_params
-    if new_company.save
-      redirect_to 'opportunities/new'
-    else
-      p 'you suck again'
-    end
+    Company.create(company_params)
+    redirect_to '/opportunities/new/'
   end
-
-
 
   private
 

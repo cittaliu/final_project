@@ -1,10 +1,10 @@
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
 <h1>I'm company#new </h1>
-<%=form_for :company do |f|%>
 Select a company to associate with this Opportunity
 <hr>
+<%=form_for @company do |f|%>
   company name:<%=f.text_field :name%><br>
   company website:<%=f.text_field :website%><br>
-  <%=f.submit("Add", class: 'btn btn-success')%>
+  <%=f.submit%>
 <%end%>
