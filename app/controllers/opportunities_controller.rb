@@ -2,6 +2,7 @@ require 'rubygems'
 require 'httparty'
 require 'emailhunter'
 require "awesome_print"
+require "mail"
 
 class OpportunitiesController < ApplicationController
 
@@ -50,13 +51,11 @@ class OpportunitiesController < ApplicationController
     p 'send_email called'
     msg = Mail.new
     msg.date = Time.now
-    msg.subject = 'This is another email send on 9:17'
-    msg.body = 'Hello, world'
+    msg.subject = 'I am sending you another email'
+    msg.body = 'Hello, world. I can send emails now!!'
     msg.content_type = 'text/html'
-    msg.to = 'Sophie Luo <sophie@groobusiness.com>'
+    msg.to = 'sophie@groobusiness.com'
     msg.from = 'me'
-
-    ap msg
 
     client = Google::APIClient.new
       client.authorization.access_token = Token.last.fresh_token

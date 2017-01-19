@@ -49,6 +49,8 @@ gem 'google-api-client', '~> 0.7.1'
 gem 'json'
 gem 'awesome_print', :require => 'ap'
 
+gem 'mail', '~> 2.6', '>= 2.6.4'
+
 # A wrapper for hunter api
 gem 'emailhunter'
 

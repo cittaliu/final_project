@@ -124,7 +124,7 @@ class UsersController < ApplicationController
 
         def get_gmail_attribute_body(gmail_data, attribute)
           body = gmail_data['payload']['parts'][0]['body']['data']
-          decoded_body = Base64.decode64(body)
+          # decoded_body = Base64.decode64(body)
         end
 
         def get_gmail_attribute(gmail_data, attribute)
@@ -146,27 +146,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-
-    # def new_calendar(@new_event)
-    #
-    #   @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
-    #
-    #   @new_event = {
-    #     event_id: "unique-event-id",
-    #     summary: todo.title,
-    #     description: project.description,
-    #     start: Time.parse(Time.now.to_s),
-    #     end: Time.parse(project.deadline.to_s+" 8:00:00 UTC"),
-    #     location: {
-    #       description: "GA SF Classroom 3"
-    #     }
-    #   }
-    #
-    #   p @new_event
-    #
-    #   calendar_id = "cal_WHaT@PYZxTP4AAfO_lpXfHiwqNMX0uyzeKct9aQ"
-    #   @cronofy.upsert_event(calendar_id, @new_event)
-    #
-    # end
 
 end
