@@ -6,12 +6,18 @@ class CompaniesController < ApplicationController
     @company = Company.find_by_id(params[:id])
   end
 
-  # def new
-  #   @company = Company.new
-  # end
+  def new
+    @company = Company.new
+  end
 
   def create
-    company = Company.create(company_params)
+    new_company = Company.new(company_params)
+    p company_params
+    if new_company.save
+      redirect_to 'opportunities/new'
+    else
+      p 'you suck again'
+    end
   end
 
 

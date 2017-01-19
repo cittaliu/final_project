@@ -20,7 +20,7 @@ class OpportunitiesController < ApplicationController
   end
 
   def new
-
+    
   end
 
   def show

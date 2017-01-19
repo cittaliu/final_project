@@ -18,7 +18,10 @@ Rails.application.routes.draw do
   get '/opportunities/:id' => 'opportunities#show', as: 'opportunity'
   post '/opportunities/:id' => 'opportunities#find_email'
 
+  get '/companies/new' => 'companies#new', as: 'new_company'
   get '/companies/:id' => 'companies#show', as: 'company'
+  post '/companies/new' => 'companies#new'
+  post '/companies' => 'companies#create'
 
   get "/auth/:provider/callback" => 'users#get_token'
   get '/dashboard' => 'users#email'
