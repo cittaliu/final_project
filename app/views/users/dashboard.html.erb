@@ -30,26 +30,6 @@
       <h3 class="font-thin m-t-xs">My Tasks this Week</h3>
     </div>
 
-    <div>
-    <%  @events.each do |item| %>
-    <div class="panel">
-      <div class="wrapper-lg">
-      <%  @summary = item['summary'] %>
-      <%  @start = item['start'].to_s[26..-2] %>
-      <%  @end_date = item['end'].to_s[26..-2] %>
-      <%  @location = item['location'].to_s[42..-3] %>
-      <%= @summary %>
-      <br>
-      <%= @start %>
-      <br>
-      <%= @end_date %>
-      <br>
-      <%= @location %>
-    </div>
-  </div>
-    <%  end %>
-    </div>
-
   </div>
 </div>
 <%= render partial: '/partials/footer' %>

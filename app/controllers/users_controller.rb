@@ -39,27 +39,27 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @auth = Token.last
-    read_calendar
     email
     google_calendar
   end
 
-  def read_calendar
-    @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
-
-    current_year = Time.now.strftime("%Y").to_i
-    current_month = Time.now.strftime("%m").to_i
-    current_day = Time.now.strftime("%d").to_i
-    @events = @cronofy.read_events(from: Date.new(current_year, current_month, current_day), to: Date.new(current_year, current_month, current_day+7))
-    @events.each do |item|
-      @location = item['location']
-      p @location
-    end
-    require 'json'
-  end
+  # def read_calendar
+  #   @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
+  #
+  #   current_year = Time.now.strftime("%Y").to_i
+  #   current_month = Time.now.strftime("%m").to_i
+  #   current_day = Time.now.strftime("%d").to_i
+  #   @events = @cronofy.read_events(from: Date.new(current_year, current_month, current_day), to: Date.new(current_year, current_month, current_day+7))
+  #   @events.each do |item|
+  #     @location = item['location']
+  #     p @location
+  #   end
+  #   require 'json'
+  # end
 
   def google_calendar
     p 'I am google calendar'
+    # initializing client
     client = Google::APIClient.new
     client.authorization.access_token = Token.last.fresh_token
     service = client.discovered_api('calendar','v3')
@@ -67,22 +67,20 @@ class UsersController < ApplicationController
     # client.discovered_apis.each do |gapi|
     #   puts "#{gapi.title} \t #{gapi.id} \t #{gapi.preferred}"
     # end
-    calendar_id = 'primary'
-    p Time.now
-    # response = client.execute(api_method: service.events_list.list)
-    # response = service.get_calendar_list(calendar_id,
-    #                            max_results: 10,
-    #                            single_events: true,
-    #                            order_by: 'startTime',
-    #                            time_min: Time.now.iso8601)
-    response = client.execute(api_method: service.freebusy.query,
-      body: JSON.dump({timeMin: Time.now.to_i,
-      timeMax: Time.now.to_i + 24*60*60,
-      timeZone: "EST",
-      items: [calendar_id]}),
+    event = {
+    timeMin: Time.now.strftime("%Y-%m-%dT%T+0000"),
+    timeMax: Time.at(Time.now.to_i + 24*60*60).strftime("%Y-%m-%dT%T+0000"),
+    timeZone: "PST"}
+
+    calendarId = 'primary'
+    response = client.execute(
+      api_method: service.events.list,
+      parameters: {calendarId: 'primary'},
+      body: JSON.dump(event),
       headers: {'Content-Type' => 'application/json'})
-    @events = JSON.parse(response.body)
-    ap @events
+      ap response.body
+    # @events = JSON.parse(response.body)
+    # ap @events
   end
 
   def email
