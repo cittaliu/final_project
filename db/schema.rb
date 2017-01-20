@@ -16,16 +16,25 @@ ActiveRecord::Schema.define(version: 20170118201824) do
   enable_extension "plpgsql"
 
   create_table "companies", force: :cascade do |t|
+    t.string   "linkedin_id"
+    t.string   "kind"
     t.string   "name"
+    t.string   "linkedin_url"
+    t.string   "industry"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "size"
     t.string   "website"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "company_id"
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email"
     t.string   "phone"
     t.string   "linkedin_url"
