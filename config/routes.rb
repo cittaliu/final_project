@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/companies/:id' => 'companies#show', as: 'company'
   post '/companies/new' => 'companies#new'
   post '/companies' => 'companies#create'
+  get '/companies/autocomplete_company_name'
 
   get '/dashboard' => 'users#dashboard',  as: 'dashboard'
   get '/dashboard' => 'users#email'

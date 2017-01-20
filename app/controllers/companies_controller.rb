@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
 
   before_action :authorize
+  autocomplete :company, :name, :full => true
 
   def show
     @company = Company.find_by_id(params[:id])
@@ -8,11 +9,21 @@ class CompaniesController < ApplicationController
 
   def new
     @company = Company.new
+    @companies = Company.all
+    if params[:search]
+     @companies = Company.name_like("%#{params[:search]}%").order('name')
+    else
+    end
   end
 
   def create
-    Company.create(company_params)
+    company = Company.new(company_params)
+    if company.save
     redirect_to '/opportunities/new/'
+    else
+    flash[:error] = 'failed to create new company. Company already in database'
+    redirect_to '/companies/new/'
+    end
   end
 
   private

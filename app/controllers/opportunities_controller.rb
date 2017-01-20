@@ -12,8 +12,6 @@ class OpportunitiesController < ApplicationController
 
   def index
     @opportunities = Opportunity.all
-    Company.destroy_all
-    seed_company
   end
 
   def create
@@ -77,29 +75,28 @@ class OpportunitiesController < ApplicationController
     ap @email
   end
 
-  def seed_company
-    @companies = []
-
-    File.foreach(Dir.pwd + '/app/assets/test.csv') do |line|
-      line = line.split(',')
-      @companies.push(
-        Company.create({
-          linkedin_id: line[0],
-          kind: line[1],
-          name: line[2],
-          linkedin_url: line[3],
-          industry: line[4],
-          city: line[5],
-          state: line[6],
-          country: line[7],
-          size: line[8],
-          website: line[9],
-          description: line[10]
-        })
-      )
-    end
-    p @companies
-  end
+  # def seed_company
+  #   @companies = []
+  #
+  #   File.foreach(Dir.pwd + '/app/assets/test.csv') do |line|
+  #     line = line.split(',')
+  #     @companies.push(
+  #       Company.create({
+  #         linkedin_id: line[0],
+  #         kind: line[1],
+  #         name: line[2],
+  #         linkedin_url: line[3],
+  #         industry: line[4],
+  #         city: line[5],
+  #         state: line[6],
+  #         country: line[7],
+  #         size: line[8],
+  #         website: line[9],
+  #         description: line[10]
+  #       })
+  #     )
+  #   end
+  # end
 
   private
 

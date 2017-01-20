@@ -169,6 +169,10 @@ GEM
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-jquery-autocomplete (1.0.3)
+      rails (>= 3.2)
+    rails4-autocomplete (1.1.1)
+      rails (>= 3.0)
     railties (5.0.1)
       actionpack (= 5.0.1)
       activesupport (= 5.0.1)
@@ -251,6 +255,8 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.1)
+  rails-jquery-autocomplete
+  rails4-autocomplete
   sass-rails (~> 5.0)
   simple-line-icons-rails
   spring

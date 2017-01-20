@@ -32,6 +32,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Use this for autocomplete
+gem 'rails4-autocomplete'
+gem 'rails-jquery-autocomplete'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # Use this for datatables
