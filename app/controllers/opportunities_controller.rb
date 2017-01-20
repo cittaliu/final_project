@@ -26,8 +26,6 @@ class OpportunitiesController < ApplicationController
 
   def show
     @opportunity = Opportunity.find_by_id(params[:id])
-    @first_name = @opportunity
-    @last_name = @opportunity.opening.company.contacts.last.name
 
     find_email
   end
@@ -35,6 +33,7 @@ class OpportunitiesController < ApplicationController
   def find_email
     p 'find email is clicked'
     @opportunity = Opportunity.find_by_id(params[:id])
+    if @opportunity.opening.company.contacts.count != 0
     @first_name = @opportunity.opening.company.contacts.last.name
     @last_name = @opportunity.opening.company.contacts.last.name
     @domain = @opportunity.opening.company.website
@@ -45,6 +44,7 @@ class OpportunitiesController < ApplicationController
     data = response.parsed_response["data"]
     @email = data['email']
     @score = data['score']
+    end
   end
 
   def send_email
