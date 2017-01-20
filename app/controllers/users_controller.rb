@@ -124,7 +124,9 @@ class UsersController < ApplicationController
 
         def get_gmail_attribute_body(gmail_data, attribute)
           body = gmail_data['payload']['parts'][0]['body']['data']
-          # decoded_body = Base64.decode64(body)
+          if body != nil
+          decoded_body = Base64.decode64(body)
+          end
         end
 
         def get_gmail_attribute(gmail_data, attribute)
