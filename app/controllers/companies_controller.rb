@@ -1,7 +1,16 @@
 class CompaniesController < ApplicationController
 
   before_action :authorize
-  autocomplete :company, :name, :full => true
+  autocomplete :company, :name
+
+  def index
+    # @companies = Company.all
+    # if params[:search]
+    #  @companies = Company.name_like("%#{params[:search]}%").order('name')
+    # else
+    # end
+   @companies = Company.filter(params.slice(:name))
+  end
 
   def show
     @company = Company.find_by_id(params[:id])
@@ -9,11 +18,6 @@ class CompaniesController < ApplicationController
 
   def new
     @company = Company.new
-    @companies = Company.all
-    if params[:search]
-     @companies = Company.name_like("%#{params[:search]}%").order('name')
-    else
-    end
   end
 
   def create

@@ -1,26 +1,23 @@
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
-<h1>I'm company#new </h1>
+<h1>I was just renamed company#index </h1>
 <div class="text-danger">
   <%=flash[:error] %>
 </div>
 Select a company to associate with this Opportunity
 <hr>
-<%=form_for @company do |f|%>
-  company name:<%=f.autocomplete_field :name, autocomplete: companies_autocomplete_company_name_path %><br>
-  company website:<%=f.text_field :website%><br>
-  <%=f.submit%>
-<%end%>
 
 <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
 <!-- text field tag=action,args,identifier,placeholdertext... -->
 <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "search company", type: "search", data: {autocomplete: companies_autocomplete_company_name_path} %>
 <%= submit_tag "Search" %>
 <%end%>
+
 <script type="text/javascript" charset="utf-8">
-  $('#search').bind('railsAutocomplete.select', function(event, data){
-  $('#search-form').submit()
-  });
+  $( "#search" ).autocomplete({
+      source: <% @companies %>
+    });
+  } );
 </script>
 
 <table>
@@ -32,7 +29,7 @@ Select a company to associate with this Opportunity
   </thead>
 
   <tbody>
-    <% @companies.each do |company| %>
+    <% @companies.first(10).each do |company| %>
       <tr>
         <td><%= company.name %></td>
       </tr>

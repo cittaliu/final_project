@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post '/opportunities/:id' => 'opportunities#find_email'
   get '/opportunities/:id/email' => 'opportunities#send_email'
 
+  get '/companies' => 'companies#index', as: "companies"
   get '/companies/new' => 'companies#new', as: 'new_company'
   get '/companies/:id' => 'companies#show', as: 'company'
   post '/companies/new' => 'companies#new'
