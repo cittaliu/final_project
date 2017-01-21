@@ -4,12 +4,12 @@
 <div class="text-danger">
   <%=flash[:error] %>
 </div>
-Select a company to associate with this Opportunity
+Enter a company to associate with this Opportunity
 <hr>
 
 <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
 <!-- text field tag=action,args,identifier,placeholdertext... -->
-<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "search company", type: "search", data: {autocomplete: companies_autocomplete_company_name_path} %>
+<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Find ore create a company", type: "search", data: {autocomplete: companies_autocomplete_company_name_path} %>
 <%= submit_tag "Search" %>
 <%end%>
 
@@ -31,7 +31,7 @@ Select a company to associate with this Opportunity
   <tbody>
     <% @companies.first(10).each do |company| %>
       <tr>
-        <td><%= company.name %></td>
+        <td><%=link_to company.name, company_path(company) %></td>
       </tr>
     <% end %>
   </tbody>

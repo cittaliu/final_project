@@ -4,12 +4,11 @@ class CompaniesController < ApplicationController
   autocomplete :company, :name
 
   def index
-    # @companies = Company.all
-    # if params[:search]
-    #  @companies = Company.name_like("%#{params[:search]}%").order('name')
-    # else
-    # end
-   @companies = Company.filter(params.slice(:name))
+    @companies = Company.all
+    if params[:search]
+     @companies = Company.name_like("%#{params[:search]}%").order('name')
+    else
+    end
   end
 
   def show
