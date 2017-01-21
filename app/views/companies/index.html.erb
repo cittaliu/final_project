@@ -8,17 +8,38 @@ Enter a company to associate with this Opportunity
 <hr>
 
 <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
-<!-- text field tag=action,args,identifier,placeholdertext... -->
 <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Find or create a company", type: "search", data: {autocomplete: companies_autocomplete_company_name_path} %>
 <%= submit_tag "Search" %>
 <%end%>
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
   $( "#search" ).autocomplete({
       source: <% @companies %>
     });
   } );
-</script>
+</script> -->
+
+<h3> this is how you add an opportunity:
+  Company.find_by_id(params[:id]).openings.create(name:"engineer")
+  User.last.openings << Company.last.openings.last
+</h3>
+
+<!--
+<div class="companies-search">
+  <input type="text" id="companies-search-txt" autofocus>
+  <div class="results" id="companies-search-results">
+  </div>
+</div> -->
+
+<!-- <script>
+  $(function() {
+    new app.Companies;
+  });
+</script> -->
+
+<!-- <%= content_for :script do %>
+  new app.Companies;
+<% end %> -->
 
 <table>
   <thead>

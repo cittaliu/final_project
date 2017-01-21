@@ -10,6 +10,11 @@ class CompaniesController < ApplicationController
     else
     end
     # seed_company
+
+    respond_to do |format|
+    format.html
+    format.json { @companies = Company.search(params[:term]) }
+    end
   end
 
   def show
