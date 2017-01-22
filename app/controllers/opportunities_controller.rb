@@ -19,7 +19,7 @@ class OpportunitiesController < ApplicationController
     @company.openings.create(opening_params)
     @user = current_user
     @user.openings << @company.openings.last
-    redirect_to '/opportunities' 
+    redirect_to '/opportunities'
   end
 
   def new
@@ -30,6 +30,13 @@ class OpportunitiesController < ApplicationController
   def show
     @opportunity = Opportunity.find_by_id(params[:id])
     find_email
+  end
+
+  def destroy
+    @opportunity = Opportunity.find(params[:id])
+    @opportunity.destroy
+
+    redirect_to('/opportunities')
   end
 
   def find_email

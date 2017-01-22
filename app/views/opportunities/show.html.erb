@@ -20,4 +20,6 @@ You don't have any contacts at this company. Please add some!
   <h3>We found the following email: <%=link_to @email, :action => :send_email %></h3>
   <h3>We are <%= @score %> % confident this email exists</h3>
 <%end%>
+
+  <%= link_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'} %>
 <%= render partial: '/partials/footer' %>
