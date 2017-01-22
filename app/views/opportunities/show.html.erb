@@ -20,7 +20,4 @@ You don't have any contacts at this company. Please add some!
   <h3>We found the following email: <%=link_to @email, :action => :send_email %></h3>
   <h3>We are <%= @score %> % confident this email exists</h3>
 <%end%>
-
-<h3>This is how you create an opportunity: User.last.openings << Company.last.openings.last</h3>
-
 <%= render partial: '/partials/footer' %>

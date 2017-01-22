@@ -15,14 +15,16 @@ class OpportunitiesController < ApplicationController
   end
 
   def create
-    @company = Company.create(company_params)
-    @openings = @company.openings
+    @company = Company.find_by_id(params[:id])
+    @company.openings.create(opening_params)
     @user = current_user
-    @user.openings << @openings
+    @user.openings << @company.openings.last
+    redirect_to '/opportunities' 
   end
 
   def new
-
+    @company = Company.find_by_id(params[:id])
+    @openings = @company.openings
   end
 
   def show
@@ -81,5 +83,8 @@ class OpportunitiesController < ApplicationController
     params.require(:company).permit(:name, :website, :description)
   end
 
+  def opening_params
+    params.require(:opening).permit(:name, :company_id)
+  end
 
 end

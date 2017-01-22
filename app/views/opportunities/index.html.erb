@@ -16,22 +16,23 @@
 <table id="opportunities">
   <thead>
   <tr>
-    <th  style="width:20%">Opportunity</th>
-    <th  style="width:25%">Status</th>
-    <th  style="width:25%">Priority</th>
-    <th  style="width:15%">Website</th>
-    <th  style="width:15%">Inactive Days</th>
+    <th  style="width:20%">Company</th>
+    <th  style="width:20%">Position</th>
+    <th  style="width:20%">Website</th>
+    <th  style="width:15%">Status</th>
+    <th  style="width:12%">Priority</th>
+    <th  style="width:13%">Inactive Days</th>
   </tr>
   </thead>
   <tbody>
     <% @opportunities.each do |opportunity| %>
     <tr>
       <td><%=link_to opportunity.opening.company.name, opportunity_path(id: opportunity.id)%></td>
+      <td><%=link_to opportunity.opening.name, opportunity_path(id: opportunity.id)%></td>
+      <td><%=link_to opportunity.opening.company.website, "https://www."+opportunity.opening.company.website, :target => "_blank" %></td>
       <td><%=opportunity.status%></td>
       <td><%=opportunity.priority%></td>
-      <td><%=link_to opportunity.opening.company.website, "https://www."+opportunity.opening.company.website, :target => "_blank" %></td>
       <td><%=(Time.now.to_i-opportunity.updated_at.to_i)/(60*60*24)%></td>
-
     </tr>
     <%end%>
     </tbody>

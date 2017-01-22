@@ -12,11 +12,12 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/opportunities' => 'opportunities#index', as: 'opportunities'
-  get '/opportunities/new' => 'opportunities#new', as: 'new_opportunity'
   post '/opportunities' => 'opportunities#create'
   get '/opportunities/:id' => 'opportunities#show', as: 'opportunity'
   post '/opportunities/:id' => 'opportunities#find_email'
   get '/opportunities/:id/email' => 'opportunities#send_email'
+  get '/companies/:id/opportunities' => 'opportunities#new', as: "company_opportunities"
+  post '/companies/:id/opportunities' => 'opportunities#create', as: "company_add_opportunities"
 
   get '/companies' => 'companies#index', as: "companies"
   get '/companies/new' => 'companies#new', as: 'new_company'

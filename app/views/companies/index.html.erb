@@ -1,6 +1,5 @@
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
-<h1>I was just renamed company#index </h1>
 <div class="text-danger">
   <%=flash[:error] %>
 </div>
@@ -18,11 +17,6 @@ Enter a company to associate with this Opportunity
     });
   } );
 </script> -->
-
-<h3> this is how you add an opportunity:
-  Company.find_by_id(params[:id]).openings.create(name:"engineer")
-  User.last.openings << Company.last.openings.last
-</h3>
 
 <!--
 <div class="companies-search">
