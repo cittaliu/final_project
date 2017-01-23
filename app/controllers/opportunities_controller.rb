@@ -51,7 +51,9 @@ class OpportunitiesController < ApplicationController
         end
       end
     end
-    
+
+    @contact = Contact.new
+
     # find_email
   end
 

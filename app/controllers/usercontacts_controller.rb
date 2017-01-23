@@ -20,24 +20,10 @@ class UsercontactsController < ApplicationController
     end
 
 
-    @company.openings.create(opening_params)
-    @user = current_user
-    @user.openings << @company.openings.last
-    redirect_to opportunities_path(current_user)
-
-
-
-    @company = Company.find_by_id(params[:id])
-    @company.openings.create(opening_params)
-    @user = current_user
-    @user.openings << @company.openings.last
-
-
     private
 
     def contact_params
-      params.require(:usercontact).permit(:first_name, :last_name)
+      params.require(:contact).permit(:first_name, :last_name)
     end
-
 
 end
