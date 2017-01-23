@@ -56,15 +56,13 @@ class UsersController < ApplicationController
 
   def show_tasks
     @events = []
-    ap @events
     @tasks = Usercontact.all
     @tasks.each do |task|
       if task.summary != nil
         @events << task
       end
     end
-    p "I'm showing tasks"
-    ap @events
+    @events.reverse!
   end
 
   # def read_calendar

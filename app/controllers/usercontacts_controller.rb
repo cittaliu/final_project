@@ -23,14 +23,18 @@ class UsercontactsController < ApplicationController
         @contact.usercontacts.create(task_params)
         @user = current_user
         @user.usercontacts << @contact.usercontacts.last
+
+        add_task
+
         redirect_to '/dashboard'
       end
 
 
     end
 
-    def google_calendar
-      p 'I am google calendar'
+    def add_task
+      p 'creating calendar event!'
+      @task = Usercontact.last
       # initializing client
       client = Google::APIClient.new
       client.authorization.access_token = Token.last.fresh_token
@@ -41,11 +45,11 @@ class UsercontactsController < ApplicationController
       # end
       calendarId = 'primary'
       g_event = {
-        summary: "Do Something",
-        location: "Classroom 3",
+        summary: @task.summary,
+        location: @task.location,
         start: {dateTime: Time.now.strftime("%Y-%m-%dT%T+0000")},
         end: {dateTime: Time.at(Time.now.to_i + 24*60*60).strftime("%Y-%m-%dT%T+0000")},
-        description: "This is important",
+        description: @task.description,
       }
       response = client.execute(:api_method => service.events.insert,
       :parameters => {'calendarId' => calendarId,

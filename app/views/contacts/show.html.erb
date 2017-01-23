@@ -8,5 +8,9 @@
   Start: <%= f.text_field :start %>
   End: <%= f.text_field :end %>
   Description: <%= f.text_field :description %>
-  <%= submit_tag "Submit"%>
+  <%= submit_tag "Submit", :name => "add_task"%>
 <% end %>
+
+<% form_tag @new_event do%>
+  <%= submit_tag "Submit", :name => "add_task" %>
+<%end%>
