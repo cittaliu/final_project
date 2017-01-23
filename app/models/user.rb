@@ -6,5 +6,5 @@ class User < ApplicationRecord
   has_many :openings, through: :opportunities
 
   has_many :usercontacts, dependent: :destroy
-  has_many :companies, through: :usercontacts
+  has_many :contacts, through: :usercontacts
 end

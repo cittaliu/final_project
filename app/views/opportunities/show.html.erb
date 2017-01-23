@@ -2,18 +2,20 @@
 <%= render partial: '/partials/side' %>
 
 <h2> i'm showing <%=@opportunity.opening.company.name %> </h2>
-  <p>you have <%=@opportunity.opening.company.contacts.count %> contacts in this company</p>
-  <% if @opportunity.opening.company.contacts.count == 0 %>
-    You don't have any contacts at this company. Please <%= link_to "add contacts", company_contacts_path %>
-  <%else%>
-  <% @opportunity.opening.company.contacts.each do |contact| %>
-    First Name:<%= contact.first_name %>
+  <p>you have <%=@current_user_contacts.count %> contacts in this company</p>
+  <% if @current_user_contacts.count == 0 %>
+    You don't have any contacts at this company.
+    <%else %>
+  <% @current_user_contacts.each do |contact| %>
+
+    First Name:<%= contact.contact.first_name %>
     <br>
-    Last Name: <%= contact.last_name %>
+    Last Name: <%= contact.contact.last_name %>
     <br>
     Company Domain: <%= @opportunity.opening.company.website %>
 
-  <% if contact.email != nil %>
+
+  <% if contact.contact.email != nil %>
   <h3>We found the following email: <%=link_to @email, :action => :send_email %></h3>
   <h3>We are <%= @score %> % confident this email exists</h3>
   <% else %>
@@ -27,8 +29,3 @@
 <%= render partial: '/partials/footer' %>
 <br>
 #add contacts
-<%= form_for @contacts.new, url: company_add_contacts_path(id: @opportunity.opening.company.id) do |f| %>
-  First Name: <%= f.text_field :first_name %>
-  Last Name: <%= f.text_field :last_name %>
-  <%= f.submit "Submit" %>
-<% end %>

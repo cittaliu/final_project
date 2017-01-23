@@ -39,9 +39,20 @@ class OpportunitiesController < ApplicationController
 
   def show
     @opportunity = Opportunity.find_by_id(params[:id])
-    p @opportunity
-    @contacts = @opportunity.opening.company.contacts.find()
-    find_email
+
+    @current_user_contacts = []
+    @company = Company.find_by_id(params[:company_id])
+    @companycontacts = @company.contacts
+
+    @companycontacts.each do |companycontact|
+      companycontact.usercontacts.each do |usercontact|
+        if usercontact.user_id == current_user.id
+          @current_user_contacts << usercontact
+        end
+      end
+    end
+    
+    # find_email
   end
 
   def destroy

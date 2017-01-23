@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   post '/dashboard' => 'users#email'
   get '/dashboard/new_event' => 'users#new_event', as: 'new_event'
 
-  get '/companies/:id/contacts' => 'contacts#new', as: "company_contacts"
-  post '/companies/:id/contacts' => 'contacts#create', as: "company_add_contacts"
+  get '/companies/:id/contacts' => 'usercontacts#new', as: "company_contacts"
+  post '/companies/:id/contacts' => 'usercontacts#create', as: "company_add_contacts"
 
 end

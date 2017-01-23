@@ -74,11 +74,11 @@ ActiveRecord::Schema.define(version: 20170123013307) do
   end
 
   create_table "usercontacts", force: :cascade do |t|
-    t.integer  "company_id"
+    t.integer  "contact_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_usercontacts_on_company_id", using: :btree
+    t.index ["contact_id"], name: "index_usercontacts_on_contact_id", using: :btree
     t.index ["user_id"], name: "index_usercontacts_on_user_id", using: :btree
   end
 
