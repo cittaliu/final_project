@@ -73,7 +73,7 @@
 
 <!-- refer to this when you need div as linke_to -->
           <li>
-              <%=link_to opportunities_path do%>
+              <%=link_to opportunities_path(id: current_user.id) do%>
               <i class="glyphicon glyphicon-signal" ></i>
               <span class="font-bold">Opportunities</span>
               <%end%>

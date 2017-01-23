@@ -4,7 +4,10 @@
 <% if @company.openings.count == 0 %>
 No opportunity added for <%= @company.name %> yet. Please add an opportunity below.</br>
 <% else %>
-Openings in this company include : <%= @company.openings.last.name%>
+Openings in this company include:
+<% @current_user_openings.each do |opening|%>
+<%= opening.opening.name %>
+<%end %>
 <%end %>
 
 <br>

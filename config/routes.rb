@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
-  get '/opportunities' => 'opportunities#index', as: 'opportunities'
-  post '/opportunities' => 'opportunities#create'
+  get 'users/:id/opportunities' => 'opportunities#index', as: 'opportunities'
+  post 'users/:id/opportunities' => 'opportunities#create'
   get '/companies/:company_id/opportunities/:id' => 'opportunities#show', as: 'opportunity'
   post '/opportunities/:id' => 'opportunities#find_email'
   get '/opportunities/:id/email' => 'opportunities#send_email'

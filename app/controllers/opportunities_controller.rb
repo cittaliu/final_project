@@ -11,13 +11,22 @@ class OpportunitiesController < ApplicationController
   format :json
 
   def index
-    @opportunities = Opportunity.all
+    @opportunities = User.find_by_id(current_user.id).opportunities
     @company = Company.find_by_id(params[:id])
   end
 
   def new
+    @current_user_openings =[]
     @company = Company.find_by_id(params[:id])
     @openings = @company.openings
+    @opportunities = User.find_by_id(current_user.id).opportunities
+    @opportunities.each do |opportunity|
+      if opportunity.opening.company_id == @company.id
+        @current_user_openings << opportunity
+        p "I'm inserted"
+      end
+    end
+    p @current_user_openings
   end
 
   def create
@@ -25,7 +34,7 @@ class OpportunitiesController < ApplicationController
     @company.openings.create(opening_params)
     @user = current_user
     @user.openings << @company.openings.last
-    redirect_to '/opportunities'
+    redirect_to opportunities_path(current_user)
   end
 
   def show
