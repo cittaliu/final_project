@@ -16,9 +16,9 @@
   </thead>
 
   <tbody>
-    <% @contacts.first(10).each do |contact| %>
+    <% @contacts.each do |contact| %>
       <tr>
-        <td><%=contact %></td>
+        <td><%=link_to contact.first_name, contact_path({id: params[:id], contact_id: contact.id})%></td>
       </tr>
     <% end %>
   </tbody>

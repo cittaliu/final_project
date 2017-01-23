@@ -1,0 +1,12 @@
+<%= render partial: '/partials/header' %>
+<%= render partial: '/partials/side' %>
+<h1>followup with <%= @contact.first_name%></h1>
+
+<%= form_for @task, url: user_add_tasks_path do |f| %>
+  Summary: <%= f.text_field :summary %>
+  Location: <%= f.text_field :location %>
+  Start: <%= f.text_field :start %>
+  End: <%= f.text_field :end %>
+  Description: <%= f.text_field :description %>
+  <%= submit_tag "Submit"%>
+<% end %>

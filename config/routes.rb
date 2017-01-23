@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   get '/users/:id/contacts' => 'contacts#index', as: 'contacts'
   get '/contacts/autocomplete_contact_name'
+  get '/users/:id/contacts/:contact_id' => 'contacts#show', as: 'contact'
+  post '/users/:id/contacts/:contact_id/events' => 'usercontacts#create', as: 'user_add_tasks'
 
   get '/companies/:id/contacts' => 'usercontacts#new', as: "company_contacts"
   post '/companies/:id/contacts' => 'usercontacts#create', as: "company_add_contacts"

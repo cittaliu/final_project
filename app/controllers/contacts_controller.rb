@@ -3,10 +3,22 @@ class ContactsController < ApplicationController
   autocomplete :contact, :first_name
 
   def index
-    @contacts = User.find_by_id(current_user.id).opportunities
+    @contacts = User.find_by_id(current_user.id).contacts
+    if params[:search]
+     @contacts = Contact.first_name_like("%#{params[:search]}%").order('first_name')
+    end
+
+    respond_to do |format|
+    format.html
+    format.json { @contacts = Contact.search(params[:term]) }
+    end
   end
 
   def show
+    @contact = Contact.find_by_id(params[:contact_id])
+    @task = @contact.usercontacts.new
+    # adding new usercontact
+    @user = User.find_by_id(params[:id])    
   end
 
   def new

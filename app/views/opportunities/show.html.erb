@@ -29,6 +29,6 @@
 <%= form_for @contact, url: company_add_contacts_path(id: @opportunity.opening.company.id) do |f| %>
   First Name: <%= f.text_field :first_name %>
   Last Name: <%= f.text_field :last_name %>
-  <%= f.submit "Submit" %>
+  <%= submit_tag "Submit", :name => "save"%>
 <% end %>
 <%= render partial: '/partials/footer' %>
