@@ -10,11 +10,11 @@
     <div class="vbox">
 
   <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active wrapper b-b b-light"><a href="#email" aria-controls="home" role="tab" data-toggle="tab">
+    <li role="presentation" class="active wrapper b-b b-light"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">
+      Tasks</a>
+    </li>
+      <li role="presentation" class="wrapper b-b b-light"><a href="#email" aria-controls="home" role="tab" data-toggle="tab">
         Emails</a>
-      </li>
-      <li role="presentation" class="wrapper b-b b-light"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">
-        Tasks</a>
       </li>
   </ul>
 
@@ -25,6 +25,29 @@
     <div role="tabpanel" class="tab-pane" id="task"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">
       Tasks</a></div>
   </div> -->
+
+  <div id="task">
+    <%= button_to "Add a New Task", {:controller => 'tasks', :action => 'new'}, method: :get %>
+  <%  @events.each do |item| %>
+  <div class="panel">
+    <div class="wrapper-lg">
+    <%  @summary = item['summary'] %>
+    <%  @start = item['start'].to_s[26..-2] %>
+    <%  @end_date = item['end'].to_s[26..-2] %>
+    <%  @location = item['location'].to_s[42..-3] %>
+    <%= @summary %>
+    <br>
+    <%= @start %>
+    <br>
+    <%= @end_date %>
+    <br>
+    <%= @location %>
+  </div>
+  </div>
+  <% end %>
+  </div>
+
+
 
       <div id="email">
           <% @show_messages.each do |message|%>
@@ -38,26 +61,7 @@
         <%end %>
       </div>
 
-    <div id="task">
-      <%= button_to "Add a New Task", action: "new_event", method: :get %>
-    <%  @events.each do |item| %>
-    <div class="panel">
-      <div class="wrapper-lg">
-      <%  @summary = item['summary'] %>
-      <%  @start = item['start'].to_s[26..-2] %>
-      <%  @end_date = item['end'].to_s[26..-2] %>
-      <%  @location = item['location'].to_s[42..-3] %>
-      <%= @summary %>
-      <br>
-      <%= @start %>
-      <br>
-      <%= @end_date %>
-      <br>
-      <%= @location %>
-    </div>
-  </div>
-    <% end %>
-    </div>
+
 
   </div>
   </div>

@@ -22,11 +22,12 @@ Rails.application.routes.draw do
   get '/new_email' => 'opportunities#email_editor', as: "email_editor"
 
   get '/companies' => 'companies#index', as: "companies"
+  get '/companies/autocomplete_company_name'
   get '/companies/new' => 'companies#new', as: 'new_company'
   get '/companies/:id' => 'companies#show', as: 'company'
   post '/companies/new' => 'companies#new'
   post '/companies' => 'companies#create'
-  get '/companies/autocomplete_company_name'
+
 
   get '/dashboard' => 'users#dashboard', as: 'dashboard'
   get '/dashboard' => 'users#email'
@@ -35,5 +36,8 @@ Rails.application.routes.draw do
 
   get '/companies/:id/contacts' => 'usercontacts#new', as: "company_contacts"
   post '/companies/:id/contacts' => 'usercontacts#create', as: "company_add_contacts"
+
+  get '/tasks/new' => 'tasks#new', as: 'new_task'
+  post '/tasks' => 'tasks#create'
 
 end
