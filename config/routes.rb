@@ -33,6 +33,6 @@ Rails.application.routes.draw do
   get '/dashboard/new_event' => 'users#new_event', as: 'new_event'
 
   get '/companies/:id/contacts' => 'contacts#new', as: "company_contacts"
-  get '/companies/:id/contacts' => 'contacts#create', as: "company_add_contacts"
+  post '/companies/:id/contacts' => 'contacts#create', as: "company_add_contacts"
 
 end

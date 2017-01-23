@@ -7,18 +7,28 @@
     You don't have any contacts at this company. Please <%= link_to "add contacts", company_contacts_path %>
   <%else%>
   <% @opportunity.opening.company.contacts.each do |contact| %>
-    First Name:<%= contact.name %>
+    First Name:<%= contact.first_name %>
     <br>
-    Last Name: <%= contact.name %>
+    Last Name: <%= contact.last_name %>
     <br>
     Company Domain: <%= @opportunity.opening.company.website %>
-    <br>
-    Email: <%= button_to "Get Email", action: "find_email" %>
-  <%end %>
 
+  <% if contact.email != nil %>
   <h3>We found the following email: <%=link_to @email, :action => :send_email %></h3>
   <h3>We are <%= @score %> % confident this email exists</h3>
-<%end%>
+  <% else %>
+    <%= button_to "Get Email", action: "find_email" %>
+  <%end%>
+  <% end%>
+    <%end %>
 <br>
+#delete opportunity<br>
   <%= link_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'} %>
 <%= render partial: '/partials/footer' %>
+<br>
+#add contacts
+<%= form_for @contacts.new, url: company_add_contacts_path(id: @opportunity.opening.company.id) do |f| %>
+  First Name: <%= f.text_field :first_name %>
+  Last Name: <%= f.text_field :last_name %>
+  <%= f.submit "Submit" %>
+<% end %>

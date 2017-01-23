@@ -30,6 +30,7 @@ class OpportunitiesController < ApplicationController
 
   def show
     @opportunity = Opportunity.find_by_id(params[:id])
+    @contacts = @opportunity.opening.company.contacts
     find_email
   end
 
@@ -44,8 +45,8 @@ class OpportunitiesController < ApplicationController
     p 'find email is clicked'
     @opportunity = Opportunity.find_by_id(params[:id])
     if @opportunity.opening.company.contacts.count != 0
-    @first_name = @opportunity.opening.company.contacts.last.name
-    @last_name = @opportunity.opening.company.contacts.last.name
+    @first_name = @opportunity.opening.company.contacts.last.first_name
+    @last_name = @opportunity.opening.company.contacts.last.last_name
     @domain = @opportunity.opening.company.website
     params = 'https://api.hunter.io/v2/email-finder?domain='+@domain+'&first_name='+@first_name+'&last_name='+@last_name+'&api_key=0c75c112169e60f02b2a866c22f049492049b278'
     response = self.class.get(
@@ -54,6 +55,10 @@ class OpportunitiesController < ApplicationController
     data = response.parsed_response["data"]
     @email = data['email']
     @score = data['score']
+    p @opportunity.opening.company.contacts.last.email
+    @opportunity.opening.company.contacts.last.email = data['email']
+    @opportunity.opening.company.contacts.last.save
+    p @opportunity.opening.company.contacts.last.email
     end
   end
 
