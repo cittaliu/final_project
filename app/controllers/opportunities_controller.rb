@@ -54,14 +54,14 @@ class OpportunitiesController < ApplicationController
 
     @contact = Contact.new
 
-    # find_email
+    find_email
   end
 
   def destroy
     @opportunity = Opportunity.find(params[:id])
     @opportunity.destroy
 
-    redirect_to('/opportunities')
+    redirect_to opportunities_path
   end
 
   def find_email
@@ -84,6 +84,11 @@ class OpportunitiesController < ApplicationController
     @opportunity.opening.company.contacts.last.save
     p @opportunity.opening.company.contacts.last.email
     end
+  end
+
+  def email_editor
+    p 'email editor called'
+    @email = Mail.new
   end
 
   def send_email
@@ -122,6 +127,10 @@ class OpportunitiesController < ApplicationController
 
   def opening_params
     params.require(:opening).permit(:name, :company_id)
+  end
+
+  def email_params
+    params.require(@email).permit(:to, :subject, :body)
   end
 
 end

@@ -15,10 +15,11 @@ Rails.application.routes.draw do
   post 'users/:id/opportunities' => 'opportunities#create'
   get '/companies/:company_id/opportunities/:id' => 'opportunities#show', as: 'opportunity'
   post '/opportunities/:id' => 'opportunities#find_email'
-  get '/opportunities/:id/email' => 'opportunities#send_email'
+  get '/opportunities/:id/email' => 'opportunities#send_email', as: "send_email"
   get '/companies/:id/opportunities' => 'opportunities#new', as: "company_opportunities"
   post '/companies/:id/opportunities' => 'opportunities#create', as: "company_add_opportunities"
-  delete '/opportunities/:id' => 'opportunities#destroy'
+  delete '/companies/:company_id/opportunities/:id' => 'opportunities#destroy'
+  get '/new_email' => 'opportunities#email_editor', as: "email_editor"
 
   get '/companies' => 'companies#index', as: "companies"
   get '/companies/new' => 'companies#new', as: 'new_company'

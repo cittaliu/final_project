@@ -11,14 +11,13 @@ class UsercontactsController < ApplicationController
     end
 
     def create
-      p "Create contacts called"
       @company = Company.find_by_id(params[:id])
       @company.contacts.create(contact_params)
       @user = current_user
       @user.contacts << @company.contacts.last
-      p @user.usercontacts
-    end
 
+      redirect_to opportunities_path
+    end
 
     private
 

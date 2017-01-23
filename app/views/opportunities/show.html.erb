@@ -13,18 +13,18 @@
     <br>
     Company Domain: <%= @opportunity.opening.company.website %>
 
-  <% if contact.contact.email != nil %>
-  <h3>We found the following email: <%=link_to @email, :action => :send_email %></h3>
+
+  <h3>We found the following email: <%=link_to @email, email_editor_path %></h3>
   <h3>We are <%= @score %> % confident this email exists</h3>
-  <% else %>
+
     <%= button_to "Get Email", action: "find_email" %>
   <%end%>
   <% end%>
-    <%end %>
+
 <br>
 #delete opportunity<br>
   <%= link_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'} %>
-<%= render partial: '/partials/footer' %>
+
 <br>
 #add contacts
 <%= form_for @contact, url: company_add_contacts_path(id: @opportunity.opening.company.id) do |f| %>
@@ -32,3 +32,4 @@
   Last Name: <%= f.text_field :last_name %>
   <%= f.submit "Submit" %>
 <% end %>
+<%= render partial: '/partials/footer' %>
