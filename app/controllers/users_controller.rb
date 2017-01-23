@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     @user = current_user
     @auth = Token.last
     email
-    google_calendar
+    # google_calendar
     read_calendar
   end
 
@@ -92,7 +92,6 @@ class UsersController < ApplicationController
     :headers => {'Content-Type' => 'application/json'})
 
     @new_event= JSON.parse(response.body)
-    ap @new_event
   end
 
   def email
