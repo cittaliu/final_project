@@ -2,33 +2,34 @@
 <%= render partial: '/partials/side' %>
 
 <div id="content" class="app-content" role="main">
-  <div class="app-content-body ">
+  <div class="app-content-body app-content-full">
 
-    <div class="bg-light lter b-b wrapper-md">
-      <h1 class="m-n font-thin h3">I'm dashboard.html.erb</h1>
-    </div>
+  <div class="hbox hbox-auto-xs bg-light ">
 
-    <div class="wrapper-md">
-      <h3 class="font-thin m-t-xs">My Emails</h3>
-    </div>
+  <div class="col">
+    <div class="vbox">
+      <div class="wrapper b-b b-light">
+        <div class="font-thin h4">Emails</div>
+      </div>
 
-    <%= button_to "Refresh My Emails", action: "email" %>
-    <%= button_to "Add a New Task", action: "new_event", method: :get %>
-    <div>
-      <% @show_messages.each do |message|%>
-      <div class="panel">
+      <div>
+          <% @show_messages.each do |message|%>
+          <div class="panel">
         <div class="wrapper-lg">
         From: <%= message[:from] %><br>
         Subject: <%= message[:subject] %><br>
         Message: <%= message[:body] %><hr>
+        </div>
+        </div>
+        <%end %>
       </div>
-    </div>
-      <%end %>
+
+
+    <div class="wrapper b-b b-light">
+      <div class="font-thin h4 m-t-xs">Tasks</div>
     </div>
 
-    <div class="wrapper-md">
-      <h3 class="font-thin m-t-xs">My Tasks this Week</h3>
-    </div>
+    <%= button_to "Add a New Task", action: "new_event", method: :get %>
 
       <div>
     <%  @events.each do |item| %>
@@ -49,7 +50,22 @@
   </div>
     <%  end %>
     </div>
+  </div>
+  </div>
 
+  <div class="col w-md lter b-l">
+    <div class="vbox">
+      <div class="row-row">
+        <div class="cell">
+          <div class="cell-inner">
+            <div class="wrapper-md">
+              <h4>saving this space for my data charts. TODO: adding tabs for email/task</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<%= render partial: '/partials/footer' %>
+</div>
+</div>
