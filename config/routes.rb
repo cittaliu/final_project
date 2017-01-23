@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get '/opportunities' => 'opportunities#index', as: 'opportunities'
   post '/opportunities' => 'opportunities#create'
-  get '/opportunities/:id' => 'opportunities#show', as: 'opportunity'
+  get '/companies/:company_id/opportunities/:id' => 'opportunities#show', as: 'opportunity'
   post '/opportunities/:id' => 'opportunities#find_email'
   get '/opportunities/:id/email' => 'opportunities#send_email'
   get '/companies/:id/opportunities' => 'opportunities#new', as: "company_opportunities"
@@ -27,9 +27,12 @@ Rails.application.routes.draw do
   post '/companies' => 'companies#create'
   get '/companies/autocomplete_company_name'
 
-  get '/dashboard' => 'users#dashboard',  as: 'dashboard'
+  get '/dashboard' => 'users#dashboard', as: 'dashboard'
   get '/dashboard' => 'users#email'
   post '/dashboard' => 'users#email'
   get '/dashboard/new_event' => 'users#new_event', as: 'new_event'
+
+  get '/companies/:id/contacts' => 'contacts#new', as: "company_contacts"
+  get '/companies/:id/contacts' => 'contacts#create', as: "company_add_contacts"
 
 end

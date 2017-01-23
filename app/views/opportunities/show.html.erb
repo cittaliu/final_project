@@ -1,25 +1,24 @@
-
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
-<h1> I'm opportunities/show </h1>
+
 <h2> i'm showing <%=@opportunity.opening.company.name %> </h2>
-<p>you have <%=@opportunity.opening.company.contacts.count %> contacts in this company</p>
-<% if @opportunity.opening.company.contacts.count == 0 %>
-You don't have any contacts at this company. Please add some!
-<%else%>
+  <p>you have <%=@opportunity.opening.company.contacts.count %> contacts in this company</p>
+  <% if @opportunity.opening.company.contacts.count == 0 %>
+    You don't have any contacts at this company. Please <%= link_to "add contacts", company_contacts_path %>
+  <%else%>
   <% @opportunity.opening.company.contacts.each do |contact| %>
-  First Name:<%= contact.name %>
-  <br>
-  Last Name: <%= contact.name %>
-  <br>
-  Company Domain: <%= @opportunity.opening.company.website %>
-  <br>
-  Email: <%= button_to "Get Email", action: "find_email" %>
+    First Name:<%= contact.name %>
+    <br>
+    Last Name: <%= contact.name %>
+    <br>
+    Company Domain: <%= @opportunity.opening.company.website %>
+    <br>
+    Email: <%= button_to "Get Email", action: "find_email" %>
   <%end %>
 
   <h3>We found the following email: <%=link_to @email, :action => :send_email %></h3>
   <h3>We are <%= @score %> % confident this email exists</h3>
 <%end%>
-
+<br>
   <%= link_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'} %>
 <%= render partial: '/partials/footer' %>

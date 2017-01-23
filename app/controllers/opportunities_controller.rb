@@ -12,6 +12,12 @@ class OpportunitiesController < ApplicationController
 
   def index
     @opportunities = Opportunity.all
+    @company = Company.find_by_id(params[:id])
+  end
+
+  def new
+    @company = Company.find_by_id(params[:id])
+    @openings = @company.openings
   end
 
   def create
@@ -20,11 +26,6 @@ class OpportunitiesController < ApplicationController
     @user = current_user
     @user.openings << @company.openings.last
     redirect_to '/opportunities'
-  end
-
-  def new
-    @company = Company.find_by_id(params[:id])
-    @openings = @company.openings
   end
 
   def show

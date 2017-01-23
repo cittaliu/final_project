@@ -6,7 +6,6 @@
   <div class="app-content-body ">
 
     <div class="bg-light lter b-b wrapper-md">
-      <h1 class="m-n font-thin h3">I'm opprtunities/index.html.erb</h1>
         <%=button_to "Add Opportunity", companies_path, method: :get, class: "btn btn-info btn-sm", form: {style: 'display:inline-block;'}%>
     </div>
 
@@ -27,8 +26,8 @@
   <tbody>
     <% @opportunities.each do |opportunity| %>
     <tr>
-      <td><%=link_to opportunity.opening.company.name, opportunity_path(id: opportunity.id)%></td>
-      <td><%=link_to opportunity.opening.name, opportunity_path(id: opportunity.id)%></td>
+      <td><%=link_to opportunity.opening.company.name, opportunity_path(company_id: opportunity.opening.company.id, id: opportunity.id)%></td>
+      <td><%=link_to opportunity.opening.name, opportunity_path(company_id: opportunity.opening.company.id, id: opportunity.id)%></td>
       <td><%=link_to opportunity.opening.company.website, "https://www."+opportunity.opening.company.website, :target => "_blank" %></td>
       <td><%=opportunity.status%></td>
       <td><%=opportunity.priority%></td>

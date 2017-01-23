@@ -1,0 +1,7 @@
+<%= render partial: '/partials/header' %>
+<%= render partial: '/partials/side' %>
+
+<%= form_for @contacts, url: company_add_contacts_path do |f| %>
+  Name: <%= f.text_field :name %>
+  <%= f.submit "Submit" %>
+<% end %>
