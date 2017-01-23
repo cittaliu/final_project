@@ -39,7 +39,8 @@ class OpportunitiesController < ApplicationController
 
   def show
     @opportunity = Opportunity.find_by_id(params[:id])
-    @contacts = @opportunity.opening.company.contacts
+    p @opportunity
+    @contacts = @opportunity.opening.company.contacts.find()
     find_email
   end
 
@@ -64,6 +65,7 @@ class OpportunitiesController < ApplicationController
     data = response.parsed_response["data"]
     @email = data['email']
     @score = data['score']
+    # TODO: why cannot add email to opportunity model
     p @opportunity.opening.company.contacts.last.email
     @opportunity.opening.company.contacts.last.email = data['email']
     @opportunity.opening.company.contacts.last.save
