@@ -6,13 +6,27 @@
 
   <div class="hbox hbox-auto-xs bg-light ">
 
-  <div class="col">
+  <div class="col" id="email">
     <div class="vbox">
-      <div class="wrapper b-b b-light">
-        <div class="font-thin h4">Emails</div>
-      </div>
 
-      <div>
+  <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active wrapper b-b b-light"><a href="#email" aria-controls="home" role="tab" data-toggle="tab">
+        Emails</a>
+      </li>
+      <li role="presentation" class="wrapper b-b b-light"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">
+        Tasks</a>
+      </li>
+  </ul>
+
+<!--
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="email"><a href="#email" aria-controls="home" role="tab" data-toggle="tab">
+      Emails</a></div>
+    <div role="tabpanel" class="tab-pane" id="task"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">
+      Tasks</a></div>
+  </div> -->
+
+      <div id="email">
           <% @show_messages.each do |message|%>
           <div class="panel">
         <div class="wrapper-lg">
@@ -24,14 +38,8 @@
         <%end %>
       </div>
 
-
-    <div class="wrapper b-b b-light">
-      <div class="font-thin h4 m-t-xs">Tasks</div>
-    </div>
-
-    <%= button_to "Add a New Task", action: "new_event", method: :get %>
-
-      <div>
+    <div id="task">
+      <%= button_to "Add a New Task", action: "new_event", method: :get %>
     <%  @events.each do |item| %>
     <div class="panel">
       <div class="wrapper-lg">
@@ -48,8 +56,9 @@
       <%= @location %>
     </div>
   </div>
-    <%  end %>
+    <% end %>
     </div>
+
   </div>
   </div>
 
