@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123191121) do
+ActiveRecord::Schema.define(version: 20170123013307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,20 +65,6 @@ ActiveRecord::Schema.define(version: 20170123191121) do
     t.index ["user_id"], name: "index_opportunities_on_user_id", using: :btree
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.integer  "contact_id"
-    t.integer  "user_id"
-    t.string   "summary"
-    t.string   "location"
-    t.string   "start"
-    t.string   "end"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["contact_id"], name: "index_tasks_on_contact_id", using: :btree
-    t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
-  end
-
   create_table "tokens", force: :cascade do |t|
     t.string   "access_token"
     t.string   "refresh_token"
@@ -90,8 +76,13 @@ ActiveRecord::Schema.define(version: 20170123191121) do
   create_table "usercontacts", force: :cascade do |t|
     t.integer  "contact_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "summary"
+    t.string   "location"
+    t.string   "start"
+    t.string   "end"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["contact_id"], name: "index_usercontacts_on_contact_id", using: :btree
     t.index ["user_id"], name: "index_usercontacts_on_user_id", using: :btree
   end

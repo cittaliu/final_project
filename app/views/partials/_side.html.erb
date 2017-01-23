@@ -71,11 +71,22 @@
             <span>Opportunities</span>
           </li>
 
-<!-- refer to this when you need div as linke_to -->
+          <!-- refer to this when you need div as linke_to -->
           <li>
               <%=link_to opportunities_path(id: current_user.id) do%>
               <i class="glyphicon glyphicon-signal" ></i>
               <span class="font-bold">Opportunities</span>
+              <%end%>
+          </li>
+
+          <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>Contacts</span>
+          </li>
+
+          <li>
+              <%=link_to contacts_path(id: current_user.id) do%>
+              <i class="glyphicon glyphicon-signal" ></i>
+              <span class="font-bold">Contacts</span>
               <%end%>
           </li>
 

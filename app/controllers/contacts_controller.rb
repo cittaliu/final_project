@@ -1,5 +1,9 @@
 class ContactsController < ApplicationController
+
+  autocomplete :contact, :first_name
+
   def index
+    @contacts = User.find_by_id(current_user.id).opportunities
   end
 
   def show

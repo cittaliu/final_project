@@ -8,6 +8,4 @@ class User < ApplicationRecord
   has_many :usercontacts, dependent: :destroy
   has_many :contacts, through: :usercontacts
 
-  has_many :tasks, dependent: :destroy
-  has_many :contacts, through: :tasks
 end

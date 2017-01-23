@@ -28,11 +28,13 @@ Rails.application.routes.draw do
   post '/companies/new' => 'companies#new'
   post '/companies' => 'companies#create'
 
-
   get '/dashboard' => 'users#dashboard', as: 'dashboard'
   get '/dashboard' => 'users#email'
   post '/dashboard' => 'users#email'
   get '/dashboard/new_event' => 'users#new_event', as: 'new_event'
+
+  get '/users/:id/contacts' => 'contacts#index', as: 'contacts'
+  get '/contacts/autocomplete_contact_name'
 
   get '/companies/:id/contacts' => 'usercontacts#new', as: "company_contacts"
   post '/companies/:id/contacts' => 'usercontacts#create', as: "company_add_contacts"

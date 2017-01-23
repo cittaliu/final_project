@@ -27,7 +27,7 @@
   </div> -->
 
   <div id="task">
-    <%= button_to "Add a New Task", {:controller => 'tasks', :action => 'new'}, method: :get %>
+    <%= button_to "Add a New Task", {:controller => 'contacts', :action => 'index', :id => current_user.id }, method: :get %>
   <%  @events.each do |item| %>
   <div class="panel">
     <div class="wrapper-lg">
@@ -46,8 +46,6 @@
   </div>
   <% end %>
   </div>
-
-
 
       <div id="email">
           <% @show_messages.each do |message|%>
