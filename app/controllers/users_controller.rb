@@ -41,7 +41,8 @@ class UsersController < ApplicationController
     @auth = Token.last
     email
     # google_calendar
-    read_calendar
+    # read_calendar
+    show_tasks
   end
 
   def new_event
@@ -53,21 +54,33 @@ class UsersController < ApplicationController
     end
   end
 
-  def read_calendar
-    @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
-
-    current_year = Time.now.strftime("%Y").to_i
-    current_month = Time.now.strftime("%m").to_i
-    current_day = Time.now.strftime("%d").to_i
-    @events = @cronofy.read_events(from: Date.new(current_year, current_month, current_day), to: Date.new(current_year, current_month, current_day+7))
-    @events.each do |item|
-      @location = item['location']
-      p @location
+  def show_tasks
+    @events = []
+    ap @events
+    @tasks = Usercontact.all
+    @tasks.each do |task|
+      if task.summary != nil
+        @events << task
+      end
     end
-    require 'json'
+    p "I'm showing tasks"
+    ap @events
   end
 
-  
+  # def read_calendar
+  #   @cronofy = Cronofy::Client.new(access_token: "xoTQMfDkfJM19CBoBXIMFh4DKvUnDJlR")
+  #
+  #   current_year = Time.now.strftime("%Y").to_i
+  #   current_month = Time.now.strftime("%m").to_i
+  #   current_day = Time.now.strftime("%d").to_i
+  #   @events = @cronofy.read_events(from: Date.new(current_year, current_month, current_day), to: Date.new(current_year, current_month, current_day+7))
+  #   @events.each do |item|
+  #     @location = item['location']
+  #     p @location
+  #   end
+  #   require 'json'
+  # end
+
 
   def email
     p "I am your email. I am clicked"

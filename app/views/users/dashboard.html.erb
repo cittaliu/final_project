@@ -28,20 +28,14 @@
 
   <div id="task">
     <%= button_to "Add a New Task", {:controller => 'contacts', :action => 'index', :id => current_user.id }, method: :get %>
-  <%  @events.each do |item| %>
+  <%  @events.each do |task| %>
   <div class="panel">
     <div class="wrapper-lg">
-    <%  @summary = item['summary'] %>
-    <%  @start = item['start'].to_s[26..-2] %>
-    <%  @end_date = item['end'].to_s[26..-2] %>
-    <%  @location = item['location'].to_s[42..-3] %>
-    <%= @summary %>
-    <br>
-    <%= @start %>
-    <br>
-    <%= @end_date %>
-    <br>
-    <%= @location %>
+      <%= task.summary %><br>
+      <%= task.start %><br>
+      <%= task.end %><br>
+      <%= task.location %><br>
+      <%= task.description %><br>
   </div>
   </div>
   <% end %>
