@@ -3,7 +3,7 @@
 <h1>followup with <%= @contact.first_name%></h1>
 
 <%= form_for @task, url: user_add_tasks_path do |f| %>
-  Summary: <%= f.text_field :summary %>
+  <%= f.hidden_field :summary, :value => "Follow up with " + @contact.first_name %>
   Location: <%= f.text_field :location %>
   Start: <%= f.date_field :start %><br>
   End: <%= f.date_field :end %>

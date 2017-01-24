@@ -4,6 +4,7 @@ class UsercontactsController < ApplicationController
     end
 
     def show
+      @usercontact = Usercontact.find_by_id(params[:id])
     end
 
     def new
@@ -11,6 +12,7 @@ class UsercontactsController < ApplicationController
     end
 
     def create
+      # TODO: add an boolean attribute in the model
       if params[:save]
         @company = Company.find_by_id(params[:id])
         @company.contacts.create(contact_params)

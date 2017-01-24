@@ -43,5 +43,6 @@ Rails.application.routes.draw do
 
   get '/tasks/new' => 'tasks#new', as: 'new_task'
   post '/tasks' => 'tasks#create'
+  get '/usercontacts/:id' =>'usercontacts#show', as: 'usercontact'
 
 end
