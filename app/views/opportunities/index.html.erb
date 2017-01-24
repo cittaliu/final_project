@@ -26,7 +26,7 @@
   <tbody>
     <% @opportunities.each do |opportunity| %>
     <tr>
-      <td><%=link_to opportunity.opening.company.name, opportunity_path(company_id: opportunity.opening.company.id, id: opportunity.id)%></td>
+      <td><%=link_to opportunity.opening.company.name, company_path(opportunity.opening.company)%></td>
       <td><%=link_to opportunity.opening.name, opportunity_path(company_id: opportunity.opening.company.id, id: opportunity.id)%></td>
       <td><%=link_to opportunity.opening.company.website, "https://www."+opportunity.opening.company.website, :target => "_blank" %></td>
       <td><%=opportunity.status%></td>

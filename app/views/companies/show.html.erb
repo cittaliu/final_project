@@ -1,14 +1,32 @@
 
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
-
-<h2> i'm showing <%=@company.name%></h2>
-<h3> this is the basic info about this company: </h3>
-Name: <%=@company.name %>
 <br>
-Website: <%= link_to @company.website %>
 <br>
-Size: <%= @company.size %>
-<br>
-<%=button_to "Yes, I'm interested in this company. Add opportunity.", company_opportunities_path, method: :get, class: "btn btn-info btn-sm", form: {style: 'display:inline-block;'}%>
-</div>
+<div class="col-sm-9">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <%=@company.name%>
+        </div>
+        <div class="list-group bg-white">
+          <div href class="list-group-item">
+            <i class="fa fa-fw fa-envelope"></i> <%= @company.website %>
+          </div>
+          <div href class="list-group-item">
+            <i class="fa fa-fw fa-eye"></i> <%= @company.size %>
+          </div>
+          <div href class="list-group-item">
+            <i class="fa fa-fw fa-phone"></i> <%= @company.linkedin_url %>
+          </div>
+          <div href class="list-group-item">
+            <i class="fa fa-fw fa-comments-o"></i>  <%= @company.city %>,  <%= @company.state %>,  <%= @company.country %>
+          </div>
+          <div href class="list-group-item">
+            <i class="fa fa-fw fa-phone"></i> <%= @company.description %>
+          </div>
+          <div class="list-group-item">
+            <i class="fa fa-fw fa-bookmark"></i> <%=button_to "Add Opportunity", company_opportunities_path, method: :get, class: "btn btn-info btn-sm", form: {style: 'display:inline-block;'}%>
+          </div>
+        </div>
+      </div>
+    </div>
