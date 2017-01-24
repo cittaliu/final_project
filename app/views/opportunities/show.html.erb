@@ -1,34 +1,70 @@
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
 
-<h2> i'm showing <%=@opportunity.opening.company.name %> </h2>
-  <p>you have <%=@current_user_contacts.count %> contacts in this company</p>
-  <% if @current_user_contacts.count == 0 %>
-    You don't have any contacts at this company.
-    <% else %>
-  <% @current_user_contacts.each do |contact| %>
-    First Name:<%= contact.contact.first_name %>
-    <br>
-    Last Name: <%= contact.contact.last_name %>
-    <br>
-    Company Domain: <%= @opportunity.opening.company.website %>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body">
 
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3"><%=@opportunity.opening.company.name %></h1>
+</div>
+<br>
 
-  <h3>We found the following email: <%=link_to @email, email_editor_path %></h3>
-  <h3>We are <%= @score %> % confident this email exists</h3>
-    <%= button_to "Get Email", action: "find_email" %>
-  <%end%>
+<% if @current_user_contacts.count != 0 %>
+<div class="col-sm-6 connected">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          You have <%=@current_user_contacts.count %> contacts at <%=@opportunity.opening.company.name %>
+        </div>
+        <ul class="list-group alt">
+        <% @current_user_contacts.each do |contact| %>
+          <li class="list-group-item">
+            <div class="media">
+              <span class="pull-left thumb-sm"><img src="img/a1.jpg" alt="contact_image" class="img-circle"></span>
+              <div class="pull-right text-success m-t-sm">
+                <i class="fa fa-circle"></i>
+              </div>
+              <div class="media-body">
+                <div><%= contact.contact.first_name %> <%= contact.contact.last_name %></div>
+                <small class="text-muted"><%= contact.contact.email %></small>
+              </div>
+            </div>
+          </li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
   <% end%>
 
-<br>
-#delete opportunity<br>
-  <%= link_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'} %>
+    <div class="container text-center">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+              <hr>
+              <h3>Add New Contacts and Start Networking!</h3>
+            </br>
+            <div class="col-md-12 text-danger">
+              <%=flash[:error] %>
+            </div>
+              <%= form_for @contact, url: company_add_contacts_path(id: @opportunity.opening.company.id) do |f| %>
+              <div class = "form-group">
+              <%= f.text_field :first_name, class: "form-control", placeholder: "First Name"%>
+              </div>
+              <div class = "form-group">
+              <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+              </div>
+              <div class = "form-group">
+                <hr>
+                <%= submit_tag "Submit", :name => "save", class: "btn btn-info"%>
+              </div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+      <%= button_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'}, class: "btn btn-danger" %>
 
-<br>
-#add contacts
-<%= form_for @contact, url: company_add_contacts_path(id: @opportunity.opening.company.id) do |f| %>
-  First Name: <%= f.text_field :first_name %>
-  Last Name: <%= f.text_field :last_name %>
-  <%= submit_tag "Submit", :name => "save"%>
-<% end %>
+      <h3>We found the following email: <%=link_to @email, email_editor_path %></h3>
+      <h3>We are <%= @score %> % confident this email exists</h3>
+        <%= button_to "Get Email", action: "find_email" %>
+      </div>
+    </div>
+
 <%= render partial: '/partials/footer' %>

@@ -1,25 +1,50 @@
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
-<h3>Select a contact to associate with this Task</h3>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body">
 
-<%= form_tag(contacts_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Find or create a contact", type: "search", data: {autocomplete: contacts_autocomplete_contact_name_path} %>
-<%= submit_tag "Search" %>
-<%end%>
+    <div class="text-danger">
+      <%=flash[:error] %>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="bg-light lter b-b wrapper-md">
+      <h1 class="m-n font-thin h3"><i class="icon-magnifier i-sm m-r-sm"></i> Select a contact to associate with this Task</h1>
+    </div>
 
-  <tbody>
-    <% @contacts.each do |contact| %>
-      <tr>
-        <td><%=link_to contact.first_name, contact_path({id: params[:id], contact_id: contact.id})%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="wrapper-md">
+    <form class="m-b-md">
+      <%= form_tag(contacts_path, :method => "get", id: "search-form") do %>
+      <div class="input-group">
+      <%= text_field_tag :search, params[:search], class: "search-query form-control input-lg", placeholder: "Find a contact", type: "search", data: {autocomplete: companies_autocomplete_company_name_path} %>
+      <span class="input-group-btn">
+      <%= submit_tag "Search", class: "btn btn-lg btn-default" %>
+      </span>
+      </div>
+      <%end%>
+    </form>
+
+      <div class="tab-container">
+        <ul class="nav nav-tabs">
+        <li class="active"><a href data-toggle="tab" data-target="#tab_1">Your Contacts <span class="badge badge-sm m-l-xs">10</span></a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+            <ul class="list-group no-borders pull-in m-b-none">
+              <% @contacts.each do |contact| %>
+              <li class="list-group-item">
+                <%=link_to contact.first_name, contact_path({id: params[:id], contact_id: contact.id}), class: "h4 text-primary m-b-sm m-t-sm block" %>
+                <p><%= contact.company.name %></p>
+                <p><span class="label bg-primary pos-rlt m-r inline wrapper-xs"><i class="arrow right arrow-primary"></i> Tags:</span> <a href class="m-r-sm">engineering</a> <a href>development</a>
+                </p>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </tabset>
+    </div>
+    </div>
+
+
+  </div>
+</div>

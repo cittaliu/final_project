@@ -1,12 +1,19 @@
 
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body">
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3"><%=@company.name %></h1>
+</div>
 <br>
 <br>
-<div class="col-sm-9">
+  <div class="col-md-9">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <%=@company.name%>
+          Basic Info
         </div>
         <div class="list-group bg-white">
           <div href class="list-group-item">
@@ -25,8 +32,10 @@
             <i class="fa fa-fw fa-phone"></i> <%= @company.description %>
           </div>
           <div class="list-group-item">
-            <i class="fa fa-fw fa-bookmark"></i> <%=button_to "Add Opportunity", company_opportunities_path, method: :get, class: "btn btn-info btn-sm", form: {style: 'display:inline-block;'}%>
+           <%=button_to "Add Opportunity", company_opportunities_path, method: :get, class: "btn btn-info btn-sm", form: {style: 'display:inline-block;'}%>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>

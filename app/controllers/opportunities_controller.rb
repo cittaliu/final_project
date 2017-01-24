@@ -34,7 +34,15 @@ class OpportunitiesController < ApplicationController
     @company.openings.create(opening_params)
     @user = current_user
     @user.openings << @company.openings.last
+    # TODO: same issue, why cannot assign value?
+    @user.opportunities.last.status = "Created"
     redirect_to opportunities_path(current_user)
+  end
+
+  def edit
+  end
+
+  def updated
   end
 
   def show

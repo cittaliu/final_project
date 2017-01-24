@@ -1,16 +1,52 @@
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
-<h1>followup with <%= @contact.first_name%></h1>
 
-<%= form_for @task, url: user_add_tasks_path do |f| %>
-  <%= f.hidden_field :summary, :value => "Follow up with " + @contact.first_name %>
-  Location: <%= f.text_field :location %>
-  Start: <%= f.date_field :start %><br>
-  End: <%= f.date_field :end %>
-  Description: <%= f.text_field :description %>
-  <%= submit_tag "Submit", :name => "add_task"%>
-<% end %>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body">
 
-<% form_tag @new_event do%>
-  <%= submit_tag "Submit", :name => "add_task" %>
-<%end%>
+    <div class="text-danger">
+      <%=flash[:error] %>
+    </div>
+
+    <div class="bg-light lter b-b wrapper-md">
+      <h1 class="m-n font-thin h3"><i class="icon-magnifier i-sm m-r-sm"></i> Add New Task</h1>
+    </div>
+
+    <div class="container text-center">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+              <h3>Followup with <%= @contact.first_name%></h3>
+            </br>
+            <div class="col-md-12 text-danger">
+              <%=flash[:error] %>
+            </div>
+              <%= form_for @task, url: user_add_tasks_path do |f| %>
+                <%= f.hidden_field :summary, :value => "Follow up with " + @contact.first_name %>
+              <div class = "form-group">
+              <%= f.text_field :location, class: "form-control", placeholder: "Where does this event happen?"%>
+              </div>
+              <div class = "form-group">
+              <%= f.date_field :start, class: "form-control" %>
+              </div>
+              <div class = "form-group">
+              <%= f.date_field :end, class: "form-control" %>
+              </div>
+              <div class = "form-group">
+              <%= f.text_field :description, class: "form-control", placeholder: "Enter a short description of this event"%>
+              </div>
+              <div class = "form-group">
+                <hr>
+                <%= submit_tag "Submit", class: "btn btn-info", :name => "add_task"%>
+              </div>
+              <% end %>
+          </div>
+        </div>
+        <% form_tag @new_event do%>
+          <%= submit_tag "Submit" %>
+        <%end%>
+          <br>
+          <br>
+      </div>
+
+  </div>
+</div>
