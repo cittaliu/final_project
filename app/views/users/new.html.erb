@@ -1,11 +1,54 @@
-<h1>Signup!</h1>
+<header id="header" class="navbar navbar-fixed-top bg-white-only padder-v"  data-spy="affix" data-offset-top="1">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="btn btn-link visible-xs pull-right m-r" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a  href="/"><%= image_tag('logo.jpeg')%></a>
+    </div>
+    <div class="collapse navbar-collapse">
 
-<%= form_for :user, url: '/users' do |f| %>
-
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
-
-<% end %>
+      <div class="nav navbar-nav navbar-right">
+          <div class="m-t-sm">
+            <%= button_to 'Login', '/login', method: :get, class: 'btn m-b-xs w-xs btn-danger pull-right', form: {style: 'display:inline-block;'} %>
+            <%= button_to 'Signup', '/signup', method: :get, class: 'btn m-b-xs w-xs btn-danger pull-right', form: {style: 'display:inline-block;'} %>
+          </div>
+      </div>
+    </div>
+  </div>
+</header>
+<br>
+<br>
+<br>
+<br>
+<div class="container text-center">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+          <hr>
+          <h2>World of Opportunities</h2>
+        </br>
+        <div class="col-md-12 text-danger">
+          <%=flash[:error] %>
+      </div>
+          <%= form_for :user, url: '/users' do |f| %>
+          <div class = "form-group">
+          <%= f.text_field :name, class: "form-control", placeholder: "Name"%>
+          </div>
+          <div class = "form-group">
+          <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+          </div>
+          <div class = "form-group">
+          <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+          </div>
+            <div class = "form-group">
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your password" %>
+          </div>
+          <div class = "form-group">
+            <hr>
+          <%= f.submit "Submit", class: "btn btn-danger"%>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ class CompaniesController < ApplicationController
     @companies = Company.all
     if params[:search]
      @companies = Company.name_like("%#{params[:search]}%").order('name')
+
     end
     # seed_company
 
@@ -25,12 +26,13 @@ class CompaniesController < ApplicationController
   end
 
   def create
+    p "create company called"
     company = Company.new(company_params)
     if company.save
-    redirect_to '/opportunities/new/'
+    redirect_to company_path(company)
     else
     flash[:error] = 'failed to create new company. Company already in database'
-    redirect_to '/companies/new/'
+    redirect_to '/companies'
     end
   end
 

@@ -31,7 +31,7 @@
   <!-- tasks -->
     <div class="panel wrapper">
       <div class="row">
-        <div class="col-md-8 b-r b-light no-border-xs">
+        <div class="col-md-12 b-r b-light no-border-xs">
           <a href class="text-muted pull-right text-lg"></a>
           <h4 class="font-thin m-t-none m-b-md text-muted">My Tasks</h4>
             <%= button_to "Add a New Task", {:controller => 'contacts', :action => 'index', :id => current_user.id }, method: :get %><br>
@@ -43,27 +43,6 @@
             </div>
           </div>
           <% end %>
-        </div>
-        <div class="col-md-4">
-          <div class="row row-sm">
-            <div class="col-xs-6 text-center">
-              <div ui-jq="easyPieChart" ui-options="{
-                  percent: 75,
-                  lineWidth: 4,
-                  trackColor: '#e8eff0',
-                  barColor: '#7266ba',
-                  scaleColor: false,
-                  size: 115,
-                  rotate: 90,
-                  lineCap: 'butt'
-                }" class="inline m-t">
-                <div>
-                  <span class="text-primary h4">75%</span>
-                </div>
-              </div>
-              <div class="text-muted font-bold text-xs m-t m-b">Work Done</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

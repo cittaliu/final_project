@@ -51,3 +51,11 @@ Enter a company to associate with this Opportunity
     <% end %>
   </tbody>
 </table>
+
+<h3>Did not find the company you are looking for? Add company below<h3><br>
+
+  <%= form_for @companies.new, url: new_company_path do |f| %>
+    Name: <%= f.text_field :name %>
+    Website: <%= f.text_field :name %>
+    <%= f.submit "Submit" %>
+  <% end %>

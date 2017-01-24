@@ -23,10 +23,10 @@ Rails.application.routes.draw do
 
   get '/companies' => 'companies#index', as: "companies"
   get '/companies/autocomplete_company_name'
-  get '/companies/new' => 'companies#new', as: 'new_company'
+  get '/companies/new' => 'companies#new'
   get '/companies/:id' => 'companies#show', as: 'company'
   post '/companies/new' => 'companies#new'
-  post '/companies' => 'companies#create'
+  post '/companies' => 'companies#create', as: 'new_company'
 
   get '/dashboard' => 'users#dashboard', as: 'dashboard'
   get '/dashboard' => 'users#email'
