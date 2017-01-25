@@ -1,3 +1,10 @@
+require 'rubygems'
+require 'httparty'
+require 'emailhunter'
+require "awesome_print"
+require "mail"
+require 'json'
+
 class UsercontactsController < ApplicationController
 
     def index
@@ -12,12 +19,16 @@ class UsercontactsController < ApplicationController
     end
 
     def create
-      # TODO: add an boolean attribute in the model
+
       if params[:save]
-        @company = Company.find_by_id(params[:id])
+        @company = Company.find_by_id(params[:company_id])
+        p @company
         @company.contacts.create(contact_params)
         @user = current_user
         @user.contacts << @company.contacts.last
+
+        p @company.contacts.last
+
         redirect_to opportunities_path
         p "add new usercontact"
       else

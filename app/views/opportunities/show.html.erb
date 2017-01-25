@@ -19,7 +19,7 @@
         <% @current_user_contacts.each do |contact| %>
           <li class="list-group-item">
             <div class="media">
-              <span class="pull-left thumb-sm"><img src="img/a1.jpg" alt="contact_image" class="img-circle"></span>
+              <span class="pull-left thumb-sm"><img src="" alt="contact_image" class="img-circle"></span>
               <div class="pull-right text-success m-t-sm">
                 <i class="fa fa-circle"></i>
               </div>
@@ -44,7 +44,7 @@
             <div class="col-md-12 text-danger">
               <%=flash[:error] %>
             </div>
-              <%= form_for @contact, url: company_add_contacts_path(id: @opportunity.opening.company.id) do |f| %>
+              <%= form_for @contact, url: company_add_contacts_path(company_id: @opportunity.opening.company.id, id: @opportunity.id) do |f| %>
               <div class = "form-group">
               <%= f.text_field :first_name, class: "form-control", placeholder: "First Name"%>
               </div>
@@ -60,11 +60,8 @@
         </div>
       </div>
       <%= button_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'}, class: "btn btn-danger" %>
-
-      <h3>We found the following email: <%=link_to @email, email_editor_path(company_id: params[:company_id], id: params[:id]) %></h3>
-      <h3>We are <%= @score %> % confident this email exists</h3>
-
-        <%= button_to "Get Email", action: "find_email" %>
+      <br>
+      <%= button_to "Update Email Info", class: "btn btn-primary", action: "find_email" %>
 
       </div>
     </div>

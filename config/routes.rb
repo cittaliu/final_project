@@ -40,8 +40,8 @@ Rails.application.routes.draw do
   post '/users/:id/contacts/:contact_id/events' => 'usercontacts#create', as: 'user_add_tasks'
 
   get '/companies/:id/contacts' => 'usercontacts#new', as: "company_contacts"
-  post '/companies/:id/contacts' => 'usercontacts#create', as: "company_add_contacts"
-  # patch '/companies/:id/contacts' => 'contacts#update'
+  post '/companies/:company_id/opportunities/:id' => 'usercontacts#create', as: "company_add_contacts"
+  patch '/companies/:company_id/opportunities/:id/contacts/:contact_id' => 'opportunities#create'
 
   get '/tasks/new' => 'tasks#new', as: 'new_task'
   post '/tasks' => 'tasks#create'
