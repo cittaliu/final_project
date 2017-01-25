@@ -110,11 +110,22 @@ class OpportunitiesController < ApplicationController
 
     # setting email params
     if params[:inject]
+
       @key = params.keys[2]
+      @params_array = @key.split("\r\n")
+
+      @date =  @params_array[0]
+      @message_id = @params_array[1]
+      @mime = @params_array[2]
+      @type = @params_array[3]
+      @transfer = @params_array[4]
 
       @subject = params[@key][:subject]
+      @body = params[@key][:body]
+      @to = params[@key][:to]
 
-      @email_string = @key[0..38]+"From: me\r\nTo: sophie@groobusiness.com\r\n"+@key[39..122]+"Subject: "+@subject+"\r\n"+@key[123..205]+@subject
+      @email_string = @date+"\r\nFrom: me\r\nTo: "+@to+"\r\n"+@message_id+"\r\nSubject: "+@subject+"\r\n"+@mime+"\r\n"+@type+"\r\n"+@transfer+"\r\n"+@body
+
       send_email
 
     else

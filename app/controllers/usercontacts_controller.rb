@@ -27,8 +27,6 @@ class UsercontactsController < ApplicationController
         @user = current_user
         @user.contacts << @company.contacts.last
 
-        p @company.contacts.last
-
         redirect_to opportunities_path
         p "add new usercontact"
       else
