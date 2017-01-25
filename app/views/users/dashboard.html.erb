@@ -42,7 +42,11 @@
               <span class="label text-base bg-info pos-rlt m-r"><i class="arrow right arrow-warning"></i><%= task.end %></span>
               <%= link_to task.summary, usercontact_path(id: task.id) %>
             </div>
+            <div class="m-b">
+              <%= task.description %>
+            </div>
           </div>
+          <li class="line dk"></li>
           <% end %>
         </div>
       </div>

@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if user.save
       UserMailer.welcome_email(user).deliver
       session[:user_id] = user.id
-      redirect_to '/dashboard'
+      redirect_to '/auth/google_oauth2'
     else
       redirect_to '/signup'
     end
