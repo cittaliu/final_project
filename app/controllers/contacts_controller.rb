@@ -3,11 +3,26 @@ class ContactsController < ApplicationController
   autocomplete :contact, :first_name
 
   def index
-    # @contacts= []
-    @contacts = User.find_by_id(current_user.id).contacts
-    # @all_contacts.each do |contact|
-    #   if contact.
-    # end
+
+    # @contacts = User.find_by_id(current_user.id).contacts
+    @contacts = []
+    @user_contacts = User.find_by_id(current_user.id).contacts
+    @all_contacts= Contact.all
+
+    @current_user_contacts_id =[]
+
+    @user_contacts.each do |contact|
+       @current_user_contacts_id << contact.id
+    end
+
+    @current_user_contacts_id = @current_user_contacts_id.uniq
+
+    @current_user_contacts_id.each do |one_contact|
+      push_contact = Contact.find(one_contact)
+      @contacts << push_contact
+    end
+
+    # p @contacts
 
     if params[:search]
      @contacts = Contact.first_name_like("%#{params[:search]}%").order('first_name')

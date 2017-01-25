@@ -34,16 +34,21 @@ class UsercontactsController < ApplicationController
         @user.contacts << @company.contacts.last
 
         redirect_to opportunities_path
-        p "add new usercontact"
+        p "add usercontact"
+
       else
         @contact = Contact.find_by_id(params[:contact_id])
-        @contact.usercontacts.create(task_params)
-        @user = current_user
-        @user.usercontacts << @contact.usercontacts.last
+
+        p @contact
+
+        # @contact.usercontacts.create(task_params)
+
+        Usercontact.create( user_id: current_user.id, contact_id: @contact.id, summary: task_params[:summary], location: task_params[:location], start: task_params[:start], end: task_params[:end] )
 
         add_task
 
-        redirect_to '/dashboard'
+        redirect_to '/tasks'
+
       end
     end
 
