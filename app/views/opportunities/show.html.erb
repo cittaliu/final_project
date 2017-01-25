@@ -25,7 +25,7 @@
               </div>
               <div class="media-body">
                 <div><%= contact.contact.first_name %> <%= contact.contact.last_name %></div>
-                <small class="text-muted"><%= contact.contact.email %></small>
+                <small class="text-muted"><%= link_to contact.contact.email, email_editor_path(company_id: params[:company_id], id: params[:id]) %></small>
               </div>
             </div>
           </li>
@@ -60,8 +60,8 @@
         </div>
       </div>
       <%= button_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'}, class: "btn btn-danger" %>
-      <br>
-      <%= button_to "Update Email Info", class: "btn btn-primary", action: "find_email" %>
+
+        <%= button_to "Update Email", action: "find_email" %>
 
       </div>
     </div>

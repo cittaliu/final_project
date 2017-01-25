@@ -13,7 +13,14 @@
           <form class="m-b-md">
           <%= form_for Mail.new.to_s do |f|%>
           <div class = "input-group">
-          <%= f.text_field :subject%>
+          <%= f.text_field :subject, placeholder: "Subject"%>
+          </div>
+          <br>
+          <div class = "input-group">
+          <%= f.text_area :body, placeholder: "Body"%>
+          </div>
+          <div class = "input-group">
+          <%= f.hidden_field :to, value: @contact.email %>
           </div>
           <div class = "input-group-btn">
             <hr>
