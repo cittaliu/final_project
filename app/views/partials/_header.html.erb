@@ -11,9 +11,7 @@
     </button>
     <!-- brand -->
     <a href="#/" class="navbar-brand text-lt">
-      <i class="fa fa-btc"></i>
-      <img src="" alt="." class="hide">
-      <span class="hidden-folded m-l-xs">Application</span>
+      <span class="hidden-folded m-l-xs">Hello <%= current_user.name %></span>
     </a>
     <!-- / brand -->
   </div>
@@ -22,7 +20,7 @@
   <!-- navbar collapse -->
   <div class="m-t-sm">
     <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
-      <div class= 'pull-right'> Signed in as <%= current_user.name %> <%= link_to "Logout", '/logout', class: 'btn m-b-xs w-xs btn-danger' %> </div>
+      <div class= 'pull-right'> <%= link_to "Logout", '/logout', class: 'btn m-b-xs w-xs btn-danger' %> </div>
     </div>
   </div>
   <!-- / navbar collapse -->

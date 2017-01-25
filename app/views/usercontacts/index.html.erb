@@ -1,0 +1,44 @@
+<%= render partial: '/partials/header' %>
+<%= render partial: '/partials/side' %>
+
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body">
+
+    <div class="text-danger">
+      <%=flash[:error] %>
+    </div>
+
+    <div class="bg-light lter b-b wrapper-md">
+      <h1 class="m-n font-thin h3"><i class="icon-magnifier i-sm m-r-sm"></i> My Tasks</h1>
+    </div>
+
+    <div class="wrapper-md">
+
+      <div class="tab-container">
+        <ul class="nav nav-tabs">
+        <li class="active"><a href data-toggle="tab" data-target="#tab_1">My Open Tasks<span class="badge badge-sm m-l-xs"></span></a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+            <ul class="list-group no-borders pull-in m-b-none">
+              <% @events.each do |task| %>
+              <li class="list-group-item">
+                <div class="m-n font-thin h4 text-light"><%= task.summary %></div>
+                <br>
+                <p><%= task.end %></p>
+                <p>@ <%= task.location %></p>
+                <p><%= task.description %></p>
+                <p><span class="label bg-danger pos-rlt m-r inline wrapper-xs"><i class="arrow right arrow-danger"></i> Tags:</span> <a href class="m-r-sm">important</a> <a href>urgent</a>
+                </p>
+                <hr>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </tabset>
+    </div>
+    </div>
+
+</div>
+</div>

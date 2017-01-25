@@ -11,7 +11,7 @@
           </li>
           <li>
               <%=link_to dashboard_path do%>
-              <i class="glyphicon glyphicon-stats icon text-primary-dker" ></i>
+              <i class="glyphicon glyphicon-dashboard icon text-primary-dker" ></i>
               <span class="font-bold">Dashboard</span>
               <%end%>
           </li>
@@ -24,7 +24,7 @@
           <!-- refer to this when you need div as linke_to -->
           <li>
               <%=link_to opportunities_path(id: current_user.id) do%>
-              <i class="glyphicon glyphicon-signal" ></i>
+              <i class="glyphicon glyphicon-th-list icon text-success-dker" ></i>
               <span class="font-bold">Opportunities</span>
               <%end%>
           </li>
@@ -37,7 +37,7 @@
 
           <li>
               <%=link_to contacts_path(id: current_user.id) do%>
-              <i class="glyphicon glyphicon-signal" ></i>
+              <i class="icon icon-users text-info-dker" ></i>
               <span class="font-bold">Contacts</span>
               <%end%>
           </li>

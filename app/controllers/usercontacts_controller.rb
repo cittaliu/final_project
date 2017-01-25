@@ -8,10 +8,16 @@ require 'json'
 class UsercontactsController < ApplicationController
 
     def index
-    end
-
-    def show
-      @usercontact = Usercontact.find_by_id(params[:id])
+      @user = current_user
+      
+      @events = []
+      @tasks = Usercontact.all
+      @tasks.each do |task|
+        if task.summary != nil
+          @events << task
+        end
+      end
+      @events.reverse!
     end
 
     def new

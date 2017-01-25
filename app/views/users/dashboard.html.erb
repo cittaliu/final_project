@@ -7,7 +7,6 @@
   <div class="hbox hbox-auto-xs bg-light ">
 
   <div class="col" id="email">
-    <div class="vbox">
 
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active wrapper b-b b-light"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">
@@ -17,14 +16,6 @@
         Emails</a>
       </li>
   </ul>
-
-<!--
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="email"><a href="#email" aria-controls="home" role="tab" data-toggle="tab">
-      Emails</a></div>
-    <div role="tabpanel" class="tab-pane" id="task"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">
-      Tasks</a></div>
-  </div> -->
 
   <div id="task">
 
@@ -40,7 +31,7 @@
           <div class="m-b">
             <div class="m-b">
               <span class="label text-base bg-info pos-rlt m-r"><i class="arrow right arrow-warning"></i><%= task.end %></span>
-              <%= link_to task.summary, usercontact_path(id: task.id) %>
+              <%= link_to task.summary, usercontacts_path %>
             </div>
             <div class="m-b">
               <%= task.description %>
@@ -54,22 +45,36 @@
     <!-- / tasks -->
   </div>
 
-      <div id="email">
-          <% @show_messages.each do |message|%>
-          <div class="panel">
-        <div class="wrapper-lg">
-        From: <%= message[:from] %><br>
-        Subject: <%= message[:subject] %><br>
-        Message: <%= message[:body] %><hr>
-        </div>
-        </div>
+    <div id="email">
+      <div class="panel wrapper">
+        <div class="row">
+          <div class="col-md-12 b-r b-light no-border-xs">
+            <a href class="text-muted pull-right text-lg"></a>
+            <h4 class="font-thin m-t-none m-b-md text-muted">My Emails</h4>
+      <ul class="list-group list-group-lg no-radius m-b-none m-t-n-xxs">
+        <% @show_messages.each do |message|%>
+        <li class="list-group-item clearfix b-l-3x b-l-info">
+          <a class="avatar thumb pull-left m-r">
+            <%= image_tag('a0.jpg')%>
+          </a>
+          <div class="pull-right text-sm text-muted">
+            <span class="hidden-xs "><%= message[:from] %></span>
+            <i class="fa fa-paperclip m-l-sm"></i>
+          </div>
+          <div class="clear">
+            <div><a class="text-md " href="#/app/mail/10"><%= message[:subject] %></a><span class="label bg-light m-l-sm ">job search</span></div>
+            <div class="text-ellipsis m-t-xs "><%= message[:body] %></div>
+          </div>
+        </li>
         <%end %>
-      </div>
-
-
-
+      </ul>
+      <br>
   </div>
   </div>
+</div>
+</div>
+</div>
+
 
   <div class="col w-md lter b-l">
     <div class="vbox">

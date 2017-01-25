@@ -1,1 +1,59 @@
-<h1>this is the homepage</h1>
+<div class="container">
+    <div class="navbar-header">
+      <a  href="/"><%= image_tag('logo.png', height: '80%', width: '80%')%></a>
+    </div>
+  </div>
+<div class="bg-white-only">
+  <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="m-t-xxl m-b-xxl padder-v">
+            <h1 class="font-bold l-h-1x m-t-xxl text-black padder-v animated fadeInDown">
+              Stay on top of your opportunities. Get <strong> HIRED! </strong>
+            </h1>
+            <h3 class="text-muted m-t-xl l-h-1x">Surfacing personalized insights to help you on every job opportunity.</h3>
+          </div>
+          <p class="text-center m-b-xxl wrapper">
+            <%= button_to 'Get Started', '/signup', method: :get, class: "btn b-2x btn-lg b-white btn-danger btn-rounded text-lg font-bold m-b-xxl animated fadeInUp", form: {style: 'display:inline-block;'} %>
+          </p>
+        </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+
+
+<div class="bg-light dk">
+    <div class="container">
+      <div class="row m-t-xl m-b-xl">
+        <div class="col-sm-3">
+          <h4 class="text-u-c m-b font-thin"><span class="b-b b-dark font-bold">About </span>This Project</h4>
+          <ul class="list-unstyled">
+            <li>This is Sophie Luo's final project for General Assembly's WDI program.</li>
+          </ul>
+        </div>
+
+        <div class="col-sm-3">
+          <h4 class="text-u-c m-b font-thin"><span class="b-b b-dark font-bold">Creator</span></h4>
+          <ul class="list-unstyled">
+            <li><a href="http://sophieluo.github.io" target="_blank">Sophie Luo</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-3">
+          <h4 class="text-u-c m-b-xl font-thin"><span class="b-b b-dark font-bold">Follow</span> Me</h4>
+          <div class="m-b-xl">
+            <a href="https://github.com/sophieluo/final_project" target="_blank" class="btn btn-icon btn-rounded btn-dark"><i class="fa fa-github"></i></a>
+            <a href="https://lit-beyond-99683.herokuapp.com" target="_blank" class="btn btn-icon btn-rounded btn-dark"><i class="fa fa-heroku"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
