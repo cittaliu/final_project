@@ -61,6 +61,8 @@ gem 'emailhunter'
 # Use cronofy for calender integration
 gem 'cronofy'
 
+gem 'whenever', :require => false
+
 gem 'bootstrap-sass', '~> 3.1.1'
 gem "font-awesome-rails"
 gem 'simple-line-icons-rails'
