@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every :day, at: '9pm' do
+every :day, at: '9:08pm' do
   rake 'inactive_days_notification'
 end
