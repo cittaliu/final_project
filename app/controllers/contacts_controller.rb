@@ -30,18 +30,15 @@ class ContactsController < ApplicationController
     @company = Company.find_by_id(params[:id])
   end
 
-  def create
-    # @company = Company.find_by_id(params[:id])
-    # @contacts = @company.contacts
-    # @company.contacts.create(contact_params)
-    # redirect_to opportunities_path
+  def update
+
   end
 
 
   private
 
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name)
+    params.require(:contact).permit(:first_name, :last_name, :email)
   end
 
 end

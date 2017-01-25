@@ -30,8 +30,6 @@ class UsercontactsController < ApplicationController
 
         redirect_to '/dashboard'
       end
-
-
     end
 
     def add_task
@@ -68,7 +66,7 @@ class UsercontactsController < ApplicationController
     private
 
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name)
+      params.require(:contact).permit(:first_name, :last_name, :email)
     end
 
     def task_params

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   format :json
 
   def new
+    @user=User.new
   end
 
   def create

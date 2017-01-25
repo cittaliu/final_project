@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get '/companies/:id/opportunities' => 'opportunities#new', as: "company_opportunities"
   post '/companies/:id/opportunities' => 'opportunities#create', as: "company_add_opportunities"
   delete '/companies/:company_id/opportunities/:id' => 'opportunities#destroy'
-  get '/new_email' => 'opportunities#email_editor', as: "email_editor"
+  get '/companies/:company_id/opportunities/:id/new_email' => 'opportunities#email_editor', as: "email_editor"
+  post '/companies/:company_id/opportunities/:id/new_email' => 'opportunities#send_email'
 
   get '/companies' => 'companies#index', as: "companies"
   get '/companies/autocomplete_company_name'
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
 
   get '/companies/:id/contacts' => 'usercontacts#new', as: "company_contacts"
   post '/companies/:id/contacts' => 'usercontacts#create', as: "company_add_contacts"
+  # patch '/companies/:id/contacts' => 'contacts#update'
 
   get '/tasks/new' => 'tasks#new', as: 'new_task'
   post '/tasks' => 'tasks#create'

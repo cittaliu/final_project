@@ -1,6 +1,29 @@
 <%= render partial: '/partials/header' %>
 <%= render partial: '/partials/side' %>
 
-<% form_tag @email do %>
-  <%= submit_tag "Send", :name => "send_email" %>
-<%end%>
+<div id="content" class="app-content" role="main">
+  <div class="app-content-body">
+
+<div class="container text-center">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+          <hr>
+          <h3>Edit Your Email to <%= @contact.first_name %></h3>
+          </br>
+          <form class="m-b-md">
+          <%= form_for Mail.new.to_s do |f|%>
+          <div class = "input-group">
+          <%= f.text_field :subject%>
+          </div>
+          <div class = "input-group-btn">
+            <hr>
+            <%= submit_tag "Send", :name => "inject", class: "btn btn-info"%>
+          </div>
+          <% end %>
+          </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>

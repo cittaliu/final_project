@@ -61,9 +61,11 @@
       </div>
       <%= button_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'}, class: "btn btn-danger" %>
 
-      <h3>We found the following email: <%=link_to @email, email_editor_path %></h3>
+      <h3>We found the following email: <%=link_to @email, email_editor_path(company_id: params[:company_id], id: params[:id]) %></h3>
       <h3>We are <%= @score %> % confident this email exists</h3>
+
         <%= button_to "Get Email", action: "find_email" %>
+
       </div>
     </div>
 
