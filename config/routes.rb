@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'users/:id/opportunities' => 'opportunities#index', as: 'opportunities'
   post 'users/:id/opportunities' => 'opportunities#create'
   get '/companies/:company_id/opportunities/:id' => 'opportunities#show', as: 'opportunity'
+  patch '/companies/:company_id/opportunities/:id' => 'opportunities#update', as: 'opportunity_update'
   post '/opportunities/:id' => 'opportunities#find_email'
   get '/opportunities/:id/email' => 'opportunities#send_email', as: "send_email"
   get '/companies/:id/opportunities' => 'opportunities#new', as: "company_opportunities"
@@ -46,5 +47,6 @@ Rails.application.routes.draw do
   get '/tasks/new' => 'tasks#new', as: 'new_task'
   post '/tasks' => 'tasks#create'
   get '/tasks' =>'usercontacts#index', as: 'usercontacts'
+  delete '/tasks/:id' => 'usercontacts#destroy', as: "task_delete"
 
 end

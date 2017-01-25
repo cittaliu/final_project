@@ -28,10 +28,11 @@
                 <p><%= task.end %></p>
                 <p>@ <%= task.location %></p>
                 <p><%= task.description %></p>
+                <%= button_to "I'm done", task_delete_path(task), method: :delete, data: {confirm: "Congratulations! You're done with this task!"}, class: "btn btn-success pull-right" %>
                 <p><span class="label bg-danger pos-rlt m-r inline wrapper-xs"><i class="arrow right arrow-danger"></i> Tags:</span> <a href class="m-r-sm">important</a> <a href>urgent</a>
                 </p>
-                <hr>
               </li>
+                <hr>
               <% end %>
             </ul>
           </div>

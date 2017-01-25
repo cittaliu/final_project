@@ -5,14 +5,17 @@
   <div class="app-content-body">
 
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3"><%=@opportunity.opening.company.name %></h1>
+  <%= button_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'}, class: "btn btn-danger pull-right" %>
+  <h1 class="m-n font-thin h3"><%= @opportunity.opening.name %> at <%=@opportunity.opening.company.name %></h1> <%= (Time.now.to_i-@opportunity.updated_at.to_i)/(60*60*24) %> days inactive
 </div>
 <br>
-<%= button_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'}, class: "btn btn-danger pull-right" %>
 <br>
 
-<% if @current_user_contacts.count != 0 %>
-<div class="col-sm-7 connected">
+<div class="container text-center">
+  <div class="row">
+
+    <% if @current_user_contacts.count != 0 %>
+    <div class="col-sm-6 connected">
       <div class="panel panel-success">
         <div class="panel-heading">
           You have <%=@current_user_contacts.count %> contacts at <%=@opportunity.opening.company.name %>
@@ -40,6 +43,23 @@
       </div>
     </div>
   <% end%>
+
+  <div class="col-md-5">
+    <h4>Making progress? Keep track of your work here:</h4>
+    <br>
+    <%= form_for @opportunity, url: opportunity_update_path(company_id: @opportunity.opening.company.id, id: @opportunity.id) do |f| %>
+    My current stage: <%= f.select :status, ['New', 'Networking', 'Application', 'Technical Interview', 'Behavioral Interview', 'Offer!', 'Negotiation', 'Accepted Offer']%>
+    <br>
+    <br>
+    My preference: <%= f.select :priority, ["1", "2", "3", "4", "5"] %>
+    <br>
+    <br>
+    <%= f.submit "Update", class: "btn btn-success" %>
+    <% end %>
+  </div>
+
+</div>
+</div>
 
     <div class="container text-center">
         <div class="row">

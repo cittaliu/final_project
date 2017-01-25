@@ -9,7 +9,7 @@ class UsercontactsController < ApplicationController
 
     def index
       @user = current_user
-      
+
       @events = []
       @tasks = Usercontact.all
       @tasks.each do |task|
@@ -76,6 +76,12 @@ class UsercontactsController < ApplicationController
 
       @new_event= JSON.parse(response.body)
       p @new_event
+    end
+
+    def destroy
+      @task = Usercontact.find(params[:id])
+      @task.destroy
+      redirect_to tasks_path
     end
 
     private
