@@ -55,8 +55,6 @@ class UsercontactsController < ApplicationController
     def add_task
       p 'creating calendar event!'
       @task = Usercontact.last
-      p @task.start
-      p @task.end
       # initializing client
       client = Google::APIClient.new
       client.authorization.access_token = Token.last.fresh_token
@@ -80,7 +78,6 @@ class UsercontactsController < ApplicationController
       :headers => {'Content-Type' => 'application/json'})
 
       @new_event= JSON.parse(response.body)
-      p @new_event
     end
 
     def destroy

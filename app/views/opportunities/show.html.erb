@@ -5,7 +5,7 @@
   <div class="app-content-body">
 
 <div class="bg-light lter b-b wrapper-md">
-  <%= button_to "I'm no longer interested", opportunity_path, method: :delete, data: {confirm: 'Are you sure you want to delete me?'}, class: "btn btn-danger pull-right" %>
+  <%= button_to "I'm no longer interested", opportunity_path(@opportunity), method: :delete, data: {confirm: 'Are you sure you want to delete me?'}, class: "btn btn-danger pull-right" %>
   <h1 class="m-n font-thin h3"><%= @opportunity.opening.name %> at <%=@opportunity.opening.company.name %></h1> <%= (Time.now.to_i-@opportunity.updated_at.to_i)/(60*60*24) %> days inactive
 </div>
 <br>

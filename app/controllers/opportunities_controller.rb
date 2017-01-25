@@ -102,7 +102,7 @@ class OpportunitiesController < ApplicationController
     @opportunity = Opportunity.find(params[:id])
     @opportunity.destroy
 
-    redirect_to opportunity_path(opportunity)
+    redirect_to opportunities_path
   end
 
   def email_editor
