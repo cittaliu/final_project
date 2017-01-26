@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
      @companies = Company.name_like("%#{params[:search]}%").order('name')
    end
 
-    # seed_company
+    seed_company
 
     respond_to do |format|
     format.html
