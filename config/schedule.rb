@@ -19,10 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 12.hours do
-  rake 'task_overdue_notification', :environment => "development"
+every 2.minutes do
+  rake 'task_overdue_notification'
 end
 
-every 12.hours do
-  rake 'inactive_days_notification', :environment => "development"
+every 2.minutes do
+  rake 'inactive_days_notification'
 end
