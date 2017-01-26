@@ -56,7 +56,7 @@
         <% @show_messages.each do |message|%>
         <li class="list-group-item clearfix b-l-3x b-l-info">
           <a class="avatar thumb pull-left m-r">
-            <%= image_tag('a0.jpg')%>
+            <%= image_tag(@image)%>
           </a>
           <div class="pull-right text-sm text-muted">
             <span class="hidden-xs "><%= message[:from] %></span>
@@ -88,6 +88,8 @@
               <div class="col-md-12">
                 <div class="panel wrapper">
                   <h4 class="font-thin m-t-none m-b text-muted">My Metrics</h4>
+                  <%= column_chart({"My Tasks" => @events.count}) %>
+                  <%= column_chart({"My Emails" => @show_messages.count}) %>
                 </div>
               </div>
             </div>

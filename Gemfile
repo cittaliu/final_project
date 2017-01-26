@@ -63,6 +63,9 @@ gem 'cronofy'
 
 gem 'whenever', :require => false
 
+gem 'chartkick', '~> 1.3', '>= 1.3.2'
+gem 'groupdate'
+
 gem 'bootstrap-sass', '~> 3.1.1'
 gem "font-awesome-rails"
 gem 'simple-line-icons-rails'

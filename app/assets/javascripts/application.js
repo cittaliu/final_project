@@ -16,6 +16,8 @@
 //= require autocomplete-rails
 //= require turbolinks
 //= require dataTables/jquery.dataTables
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
 
 //= require app
