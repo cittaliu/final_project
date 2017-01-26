@@ -1,8 +1,27 @@
 desc 'inactive days notification'
 
 task inactive_days_notification: :environment do
-  user = User.first
-  UserMailer.inactive_days_notification(user).deliver
+
+  @inactive_users_id =[]
+  @inactive_users =[]
+  @users = User.all
+  @users.each do |user|
+    user.opportunities.each do |opportunity|
+      if ((Time.now.to_i-opportunity.updated_at.to_i)/(60*60*24)) == 0
+        @inactive_users_id << opportunity.user_id
+      end
+    end
+  end
+
+  @inactive_users_id = @inactive_users_id.uniq
+  @inactive_users_id.each do |inactive_user_id|
+    @inactive_users << User.find(inactive_user_id)
+  end
+
+  @inactive_users.each do |user|
+    UserMailer.inactive_days_notification(user).deliver
+  end
+
 end
 
 task task_overdue_notification: :environment do

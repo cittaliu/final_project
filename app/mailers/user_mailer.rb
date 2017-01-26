@@ -2,7 +2,6 @@ class UserMailer < ApplicationMailer
   default from: 'kaizenapp123@gmail.com'
 
   def welcome_email(user)
-    p "sending welcome_email"
     @user = user
     @url  = 'https://lit-beyond-99683.herokuapp.com/login'
     mail(to: @user.email, subject: "Welcome to Inked")
