@@ -64,6 +64,10 @@ class UsersController < ApplicationController
       end
     end
     @events.reverse!
+
+    @image = 'a'+((10*rand()).round(0)).to_s+'.jpg'
+    p "i'm printing your image"
+    p @image
   end
 
   # def read_calendar
