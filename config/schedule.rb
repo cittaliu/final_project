@@ -18,6 +18,11 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every :hour do
-  rake 'inactive_days_notification'
+every 2.hours do
+  rake 'inactive_days_notification', :environment => "development"
+end
+
+
+every 2.hours do
+  rake 'task_overdue_notification', :environment => "development"
 end

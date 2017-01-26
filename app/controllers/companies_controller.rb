@@ -7,8 +7,8 @@ class CompaniesController < ApplicationController
     @companies = Company.all
     if params[:search]
      @companies = Company.name_like("%#{params[:search]}%").order('name')
+   end
 
-    end
     # seed_company
 
     respond_to do |format|
